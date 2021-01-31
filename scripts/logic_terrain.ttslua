@@ -166,6 +166,56 @@ function change_texture_terrain(terrain_obj, new_tex_url)
     terrain_obj.setCustomObject(custom)
 end
 
+-- Get the colors for the players. e.g. {"Red", "Blue"}
+function get_player_colors()
+  local playerList = Player.getPlayers()
+  local result = {}
+  for i, playerReference in ipairs(playerList) do
+    result[i] = playerReference.color
+  end
+  return result
+end
+
+-- terrain detail that will hide if there is a colliding base.
+-- key is the terrain detail object (e.g. tree), and the value
+-- is a set of bases (objects) that are colliding with the terrain
+-- detail.
+g_colliding_terrain = {}
+
+
+function onObjectCollisionEnter(registered_object, info)
+  local collision_object = info.collision_object
+  if not is_base(collision_object) then
+    return
+  end
+  local collisions = g_colliding_terrain[registered_object]
+  if nil == collisions then
+    return
+  end
+  collisions[collision_object] = collision_object
+  registered_object.setInvisibleTo(get_player_colors())
+end
+
+function onObjectCollisionExit(registered_object, info)
+  local collision_object = info.collision_object
+  local collisions = g_colliding_terrain[registered_object]
+  if nil == collisions then
+    -- not a colliding terrain
+    return
+  end
+  collisions[collision_object] = nil
+  if is_table_empty(collisions) then
+    registered_object.setInvisibleTo({})
+  end
+end
+
+-- Setup a terrain detail to be able to hide when a base collides
+-- with it.
+function register_colliding_terrain(obj)
+  g_colliding_terrain[obj] = {  }
+  obj.registerCollisions(false)
+end
+
 function set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
     local options = g_terrain[table_type]['forest']
     local multiplier = options['multiplier']
@@ -175,6 +225,7 @@ function set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
         new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
         local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), minimal_collider, true)
         obj.setLock(true)
+        register_colliding_terrain(obj)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
 end
