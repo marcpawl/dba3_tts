@@ -182,6 +182,19 @@ end
 -- detail.
 g_colliding_terrain = {}
 
+g_hide_obscurring_terrain = true
+
+function toggle_hide_obscuring_terrain()
+  g_hide_obscurring_terrain = not g_hide_obscurring_terrain
+  if g_hide_obscurring_terrain then
+    print_info("Obscurring terrain detail will be hidden")
+  else
+    print_info("Obscurring terrain detail will be shown")
+    for terrain_detail,_ in pairs(g_colliding_terrain) do
+      terrain_detail.setInvisibleTo({})
+    end
+  end
+end
 
 function onObjectCollisionEnter(registered_object, info)
   local collision_object = info.collision_object
@@ -193,18 +206,21 @@ function onObjectCollisionEnter(registered_object, info)
     return
   end
   collisions[collision_object] = collision_object
-  registered_object.setInvisibleTo(get_player_colors())
+  if g_hide_obscurring_terrain then
+    registered_object.setInvisibleTo(get_player_colors())
+  else
+    registered_object.setInvisibleTo({})
+  end
 end
 
 function onObjectCollisionExit(registered_object, info)
   local collision_object = info.collision_object
   local collisions = g_colliding_terrain[registered_object]
   if nil == collisions then
-    -- not a colliding terrain
     return
   end
   collisions[collision_object] = nil
-  if is_table_empty(collisions) then
+  if (not g_hide_obscurring_terrain) or is_table_empty(collisions) then
     registered_object.setInvisibleTo({})
   end
 end
