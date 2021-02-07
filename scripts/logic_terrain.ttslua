@@ -184,59 +184,16 @@ g_colliding_terrain = {}
 
 g_hide_obscurring_terrain = true
 
--- Get the shape for an object based on the bounds of the object.
-function terrain_to_shape(terrain)
-  local bounds = terrain.getBounds()
-  local rotation = terrain.getRotation()
-  local rotationY = normalize_angle(from_degrees_to_rad(rotation)['y'])
-  local pos = terrain.getPosition()
-  local sizeXZ = {x=bounds.size.x, z=bounds.size.z}
-  local corners = compute_corners_coords(sizeXZ, rotationY, pos)
-  return corners_to_shape(corners)
-end
-
--- Is the terrain obscurring any base?
--- terrain: Terrain to checking
--- bases: list of cached bases
--- return true if any base is obscurred by the terrain
-function is_terrain_obscuring_any_base(terrain, bases)
-  local terrain_shape = terrain_to_shape(terrain)
-  for _,base in pairs(bases) do
-    local base_shape = base.getShape()
-    if is_2d_shapes_intersecting(terrain_shape, base_shape) then
-      return true
-    end
-  end
-  return false
-end
-
--- Hide any terrain details that are obscurring any bases.
-function hide_obscuring_terrain()
-  local all_objs = getAllObjects()
-  local bases = filter_bases(all_objs)
-  local c_bases = bases_to_cached(bases)
-  for terrain_detail,_ in pairs(g_colliding_terrain) do
-    if is_terrain_obscuring_any_base(terrain_detail, c_bases) then
-      hide_terrain(terrain_detail)
-    end
-  end
-end
-
 function toggle_hide_obscuring_terrain()
   g_hide_obscurring_terrain = not g_hide_obscurring_terrain
   if g_hide_obscurring_terrain then
     print_info("Obscurring terrain detail will be hidden")
-    hide_obscuring_terrain()
   else
     print_info("Obscurring terrain detail will be shown")
     for terrain_detail,_ in pairs(g_colliding_terrain) do
       terrain_detail.setInvisibleTo({})
     end
   end
-end
-
-function hide_terrain(terrain_detail)
-  terrain_detail.setInvisibleTo(get_player_colors())
 end
 
 function onObjectCollisionEnter(registered_object, info)
@@ -250,7 +207,7 @@ function onObjectCollisionEnter(registered_object, info)
   end
   collisions[collision_object] = collision_object
   if g_hide_obscurring_terrain then
-    hide_terrain(registered_object)
+    registered_object.setInvisibleTo(get_player_colors())
   else
     registered_object.setInvisibleTo({})
   end

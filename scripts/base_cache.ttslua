@@ -60,15 +60,3 @@ function build_base_cache(base)
 
   return cache
 end
-
-
--- Given a list of bases in a table, returns another table of
--- base_cache obejects
-function bases_to_cached(list)
-  local result = {}
-  for _,base in ipairs(list) do
-    local c = build_base_cache(base)
-    table.insert(result, c)
-  end
-  return result
-end

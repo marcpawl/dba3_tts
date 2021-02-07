@@ -633,17 +633,14 @@ function calculate_future_position_wheel(obj, transform, pivot_point, angle, is_
     return get_transform(new_pos, new_corners, new_angle)
 end
 
-function corners_to_shape(corners)
+
+function transform_to_shape(transform)
+  corners=transform['corners']
   shape={
     corners['topright'], corners['topleft'], corners['botleft'],
     corners['botright']
   }
   return shape
-end
-
-function transform_to_shape(transform)
-  local corners=transform['corners']
-  return corners_to_shape(corners)
 end
 
 -- get a shape that defines a quarter of a base.
