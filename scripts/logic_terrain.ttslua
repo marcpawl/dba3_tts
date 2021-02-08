@@ -178,7 +178,7 @@ end
 
 -- terrain detail that will hide if there is a colliding base.
 -- key is the GUID of terrain detail object (e.g. tree), and the value
--- is a set GUID's as the key of bases (objects) that are colliding 
+-- is a set GUID's as the key of bases (objects) that are colliding
 -- with the terrain detail.
 --
 -- This structure is serialized when the game is saved, including
@@ -194,16 +194,17 @@ g_hide_obscurring_terrain = true
 --
 -- detail: GUID of Object to hide, e.g. tree
 function set_obscurring_terrain_visibility(detail_guid)
-  local detail = getObjectFromGUID(detail_guid)
-  if detail == nill then
+  local terrain_detail = getObjectFromGUID(detail_guid)
+  if terrain_detail == nill then
       print_debug("terrain detail is nil: " .. terrain_guid)
       return
   end
-  local hide = g_hide_obscurring_terrain and (not is_table_empty(g_obscurring_terrain[detail.getGUID()]))
+  terrain_detail.registerCollisions(false)
+  local hide = g_hide_obscurring_terrain and (not is_table_empty(g_obscurring_terrain[detail_guid]))
   if hide then
-    terrain_detail.setInvisibleTo({})
+    terrain_detail.setInvisibleTo(get_player_colors())
   else
-    registered_object.setInvisibleTo(get_player_colors())
+    terrain_detail.setInvisibleTo({})
   end
 end
 
@@ -236,7 +237,7 @@ function onObjectCollisionEnter(registered_object, info)
     return
   end
   local colliding_guid = collision_object.getGUID()
-  collisions[colliding_guid] = true 
+  collisions[colliding_guid] = true
   if g_hide_obscurring_terrain then
     registered_object.setInvisibleTo(get_player_colors())
   else
