@@ -28,32 +28,77 @@ Player.getPlayers = function()
 end
 
 function test_terrain_not_invisible_if_colliding_with_not_base()
+  local tree1_invisible = {}
   local tree1_registered = nil
   local tree1 = { 
-      getName = function() return 'tree' end,
+      getName = function() return 'tree1' end,
+      getGUID = function() return 'tree1guid' end,
       registerCollisions = function(stay) 
           tree1_registered = stay
         end,
-    }
-  local tree2 = { getName = function() return 'tree' end }
-  register_colliding_terrain(tree1)
+      setInvisibleTo = function(players) tree1_invisible = players end,
+      }
+  local tree2 = { 
+    getName = function() return 'tree2' end,
+    getGUID = function() return 'tree2guid' end,
+  }
+  register_obscurring_terrain(tree1)
   lu.assertEquals(false, tree1_registered)
+
+  -- Exercise
+  g_hide_obscurring_terrain = true
   local info = { collision_object=tree2 }
   onObjectCollisionEnter(tree1, info)
+
+  -- verify
+  lu.assertTrue(is_table_empty(tree1_invisible))
 end
 
 function test_terrain_invisible_if_colliding_with_base()
   local tree1_invisible = {}
   local tree1 = { 
       getName = function() return 'tree' end,
+      getGUID = function() return 'guidtree' end,
       registerCollisions = function(stay) end,
       setInvisibleTo = function(players) tree1_invisible = players end,
     }
-  local bow = { getName = function() return 'base bow' end }
-  register_colliding_terrain(tree1)
+  local bow = { 
+    getName = function() return 'base bow' end,
+    getGUID = function() return 'guidbow' end
+   }
+  register_obscurring_terrain(tree1)
+
+    -- Exercise
+    g_hide_obscurring_terrain = true
+
   local info = { collision_object=bow }
   onObjectCollisionEnter(tree1, info)
+
+  -- Validate
   lu.assertFalse(is_table_empty( tree1_invisible ) )
+end
+
+function test_terrain_visible_if_colliding_with_base_if_obscurring_terrain_disabled()
+  local tree1_invisible = {}
+  local tree1 = { 
+      getName = function() return 'tree' end,
+      getGUID = function() return 'guidtree' end,
+      registerCollisions = function(stay) end,
+      setInvisibleTo = function(players) tree1_invisible = players end,
+    }
+  local bow = { 
+    getName = function() return 'base bow' end,
+    getGUID = function() return 'guidbow' end
+   }
+  register_obscurring_terrain(tree1)
+
+  -- Exercise
+  g_hide_obscurring_terrain = false
+  local info = { collision_object=bow }
+  onObjectCollisionEnter(tree1, info)
+
+  -- Validate
+  lu.assertTrue(is_table_empty( tree1_invisible ) )
 end
 
 
@@ -61,14 +106,24 @@ function test_terrain_visible_if_base_leaves()
   local tree1_invisible = {}
   local tree1 = { 
       getName = function() return 'tree' end,
+      getGUID = function() return 'guidtree' end,
       registerCollisions = function(stay) end,
       setInvisibleTo = function(players) tree1_invisible = players end,
     }
-  local bow = { getName = function() return 'base bow' end }
-  register_colliding_terrain(tree1)
+  local bow = { 
+    getName = function() return 'base bow' end,
+    getGUID = function() return 'guidbow' end
+   }
+  register_obscurring_terrain(tree1)
+
+  -- Exercise
+  g_hide_obscurring_terrain = true
   local info = { collision_object=bow }
   onObjectCollisionEnter(tree1, info)
+  lu.assertFalse(is_table_empty( tree1_invisible ) )
   onObjectCollisionExit(tree1, info)
+
+  -- verify
   lu.assertTrue(is_table_empty( tree1_invisible ) )
 end
 
@@ -76,11 +131,18 @@ function test_terrain_visible_if_base_leaves_after_multiple_entries()
   local tree1_invisible = {}
   local tree1 = { 
       getName = function() return 'tree' end,
+      getGUID = function() return 'guidtree' end,
       registerCollisions = function(stay) end,
       setInvisibleTo = function(players) tree1_invisible = players end,
     }
-  local bow = { getName = function() return 'base bow' end }
-  register_colliding_terrain(tree1)
+  local bow = { 
+    getName = function() return 'base bow' end,
+    getGUID = function() return 'guidbow' end
+  }
+  register_obscurring_terrain(tree1)
+
+  -- Exercise
+  g_hide_obscurring_terrain = true
   local info = { collision_object=bow }
   onObjectCollisionEnter(tree1, info)
   onObjectCollisionEnter(tree1, info)
@@ -90,15 +152,32 @@ function test_terrain_visible_if_base_leaves_after_multiple_entries()
 end
 
 function test_non_terrain_ignored_for_collision_enter()
-  local bow = { getName = function() return 'base bow' end }
-  local aux = { getName = function() return 'base aux' end }
+  local bow = { 
+    getName = function() return 'base bow' end,
+    getGUID = function() return "guidbow" end
+  }
+  local aux = { 
+    getName = function() return 'base aux' end,
+    getGUID = function() return "guidaux" end
+  }
+
+  -- Exercise
+  g_hide_obscurring_terrain = true
   local info = { collision_object=bow }
   onObjectCollisionEnter(aux, info)
 end
 
 function test_non_terrain_ignored_for_collision_exit()
-  local bow = { getName = function() return 'base bow' end }
-  local aux = { getName = function() return 'base aux' end }
+  local bow = { 
+    getName = function() return 'base bow' end,
+    getGUID = function() return "guidbow" end
+  }
+  local aux = { 
+    getName = function() return 'base aux' end,
+    getGUID = function() return "guidaux" end
+  }
+  -- Exercise
+  g_hide_obscurring_terrain = true
   local info = { collision_object=bow }
   onObjectCollisionExit(aux, info)
 end
