@@ -599,225 +599,169 @@ base_tool_tips['Ps']= {
   }
 }
 
---
---
---
---
---
---CP, Lit, CWg (solid foot) Command Posts, Litters,
---and Command Wagons
---
---Combat Factors:   5 v foot,   3 v mounted
---             Combat Factor:     4 if shot at
---
---
---Speed in Good Going:               2 BW
---Speed in Rough/Bad Going:     1 BW
---
---   Cannot contact an enemy (even corner-to-corner)
---   Adds side support to Sp and solid Bw in Good Going
---   Fights as if solid Bd (but is not quick-killed like Bd)
---   Does not pursue like Blades
---   Never recoils
---   Friendly Bd, Pk, Bw may recoil through these troops
---
---Can Quick-Kill:     Kn, HCh & Cm on an equal score
---                               and SCh, Art and civilians
---Only killed by:     foot on an equal score if 2 enemy
---                               front edges are in contact,
---                               or when doubled by anyone
---Cannot destroy:  LH & LCm, who will flee in any
---                               but Bad Going,  
---                               nor Ps, who just flee instead
---
---
---
---Civilians (fast foot) Camp Followers and City Denizens
---
---Combat Factors:   2 v foot,   0 v mounted
---
---Speed in Good Going:                 2 BW
---                 Speed in Rough/Bad Going:        1 BW
---
---  +1 PIP cost to move after the 1st bound
---  Moves as if solid foot, but fights as fast foot
---  Victory: Lost civilians do not count  
---
---  Sallying:-
---  Camp Followers may leave their Camp but not return
---
---  City Denizens only sally if there is no garrison, and
---  both enemy and friends are within 2 BW of their City.
---  They cannot move more than 3 BW from their City.
---
---
---Can Quick-Kill:             SCh, Art and civilians
---Quick-Killed by:           everyone
---
---
---4Bw (solid foot) Solid Bows
---
---    Combat Factors:   2 v foot,   4 v mounted
---Side Support in close combat in Good Going: +1 v foot
---Speed in Good Going:                2 BW
---                 Speed in Rough/Bad Going:    1 BW
---
--- Range is 3 BW, unless they moved more than 1 BW
--- Must prioritize targeting enemy in their Threat Zone
--- 4Bw is side supported by solid Bds in Good Going
--- Bad Going does not affect combat, only speed
--- Can recoil through friendly Bds (including CP/Lit/CWg)
--- 
---
---
---
---All Bow Quick-Kill:   Art and civilians
---Lb & Cb Quick-Kill:   Kn, HCh and Cm in close
---                                    combat on an equal score
---Quick-Killed by:        any mounted enemy
---Makes these flee:    SCh (rear shots destroy them)
---
---
---8Bw (solid foot) Double Ranked Solid Bows
---
---    Combat Factors:   2 v foot,   4 v mounted
---Side Support in close combat in Good Going: +1 v foot
---              8Bw in close combat in Good Going:  +1 v foot
---
---
---
---
---
---
---
---
---
---Speed in Good Going:                2 BW
---                 Speed in Rough/Bad Going:    1 BW
---
---
--- Range is 3 BW, unless they moved more than 1 BW
--- Must prioritize targeting enemy in their Threat Zone
--- 8Bw is side supported by solid Bds in Good Going
--- Bad Going does not affect combat, only speed
--- Can recoil through friendly Bds (including CP/Lit/CWg)
--- Victory: 1st double base lost counts as 2 elements
---
---
---
---All Bow Quick-Kill:   Art and civilians
---Lb & Cb Quick-Kill:   Kn, HCh and Cm in close
---                                    combat on an equal score
---Quick-Killed by:        any mounted enemy
---Makes these flee:    SCh (rear shots destroy them)
---
---
---3Bw (fast foot) Fast Bows
---
---    Combat Factors:   2 v foot,   4 v mounted
---
--- 
---
---
---
---
---
---
---
---
---
---Speed in Good Going:                3 BW
---                 Speed in Rough/Bad Going:    3 BW
---
---
--- Range is 3 BW, unless they moved more than 1 BW
--- Must prioritize targeting enemy in their Threat Zone
--- 3Bw is not side supported by solid Bds
--- Bad Going does not affect combat or speed
--- Can recoil through friendly Bds (including CP/Lit/CWg)
--- 
---
---
---
---All Bow Quick-Kill:   Art and civilians
---Lb & Cb Quick-Kill:   Kn, HCh and Cm in close
---                                    combat on an equal score
---Quick-Killed by:        any mounted enemy
---Makes these flee:    SCh (rear shots destroy them)
---
---
---Mtd-4Bw (solid foot) Solid Mounted Infantry
---
---Combat Factors:   2 v foot,   4 v mounted
---Side Support in close combat in Good Going: +1 v foot
---
---
---
---
---
---
---
---
---
---
---
---
---     Eligible for subsequent off-road moves
---Speed in Good Going:                3 BW
---Speed in Rough/Bad Going:      1 BW
---
---
--- May deploy 2 BW from the table side-edges
--- Can make a 2nd or 3rd move in Good Going
--- Range is 3 BW, unless they moved more than 1 BW
--- Must prioritize targeting enemy in their Threat Zone
--- Mtd-4Bw side supported by solid Bds in Good Going
--- Bad Going does not affect combat, only speed
--- Can recoil through friendly Bd (including CP/Lit/CWg)
---
---All Bow Quick-Kill:   Art and civilians
---Lb & Cb Quick-Kill:   Kn, HCh and Cm in close
---                                    combat on an equal score
---Quick-Killed by:        any mounted enemy, or by
---                                    any enemy if in Bad Going
---Makes these flee:    SCh (rear shots destroy them)
---
---
---Mtd-3Bw (fast foot) Fast Mounted Infantry
---
---Combat Factors:   2 v foot,   4 v mounted
---Side Support in close combat in Good Going: +1 v foot
---
---
---
---
---
---
---
---
---
---
---
---
---     Eligible for subsequent off-road moves
---Speed in Good Going:                3 BW
---Speed in Rough/Bad Going:      3 BW
---
---
--- May deploy 2 BW from the table side-edges
--- Can make a 2nd or 3rd move in Good Going
--- Range is 3 BW, unless they moved more than 1 BW
--- Must prioritize targeting enemy in their Threat Zone
--- Mtd-3Bw is not side supported by solid Bds
--- Bad Going does not affect combat or speed
--- Can recoil through friendly Bd (including CP/Lit/CWg)
---
---All Bow Quick-Kill:   Art and civilians
---Lb & Cb Quick-Kill:   Kn, HCh and Cm in close
---                                    combat on an equal score
---Quick-Killed by:        any mounted enemy, or by
---                                    any enemy if in Bad Going
---Makes these flee:    SCh (rear shots destroy them)
+base_tool_tips['4Bw']= {
+  name = "Solid Bows",
+  solid = true,
+  combat = { foot = 2, mounted = 4 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill={
+    "All Bow Quick-Kill: Art and civilians",
+    "Lb & Cb Quick-Kill:  Kn, HCh and Cm in close combat on an equal score"
+  },
+  quick_killed_by={ 
+    "any mounted enemy"
+  },
+  makes_flee={
+    "SCh (rear shots destroy them)"
+  },
+  flees_from={},
+  movement_notes = { 
+  },
+  cannot_destroy="",
+  combat_notes = { 
+    "Side Support in close combat in Good Going: +1 v foot",
+    "Range is 3 BW, unless they moved more than 1 BW",
+    "Must prioritize targeting enemy in their Threat Zone",
+    "4Bw is side supported by solid Bds in Good Going",
+    "Bad Going does not affect combat, only speed",
+    "Can recoil through friendly Bds (including CP/Lit/CWg)"
+  },
+  victory_notes = {},
+  deployment_notes = {}
+}
+
+base_tool_tips['8Bw']= {
+  name = "Double Ranked Solid Bows",
+  solid = true,
+  combat = { foot = 2, mounted = 4 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill={
+    "All Bow Quick-Kill: Art and civilians",
+    "Lb & Cb Quick-Kill:  Kn, HCh and Cm in close combat on an equal score"
+  },
+  quick_killed_by={ 
+    "any mounted enemy"
+  },
+  makes_flee={
+    "SCh (rear shots destroy them)"
+  },
+  flees_from={},
+  movement_notes = { 
+  },
+  cannot_destroy="",
+  combat_notes = { 
+    "Side Support in close combat in Good Going: +1 v foot",
+    "8Bw in close combat in Good Going:  +1 v foot",
+    "Range is 3 BW, unless they moved more than 1 BW",
+    "Must prioritize targeting enemy in their Threat Zone",
+    "8Bw is side supported by solid Bds in Good Going",
+    "Bad Going does not affect combat, only speed",
+    "Can recoil through friendly Bds (including CP/Lit/CWg)"
+  },
+  victory_notes = {
+    "1st double base lost counts as 2 elements"
+  },
+}
+
+base_tool_tips['3Bw']= {
+  name = "Fast Bows",
+  fast = true,
+  combat = { foot = 2, mounted = 4 },
+  speed = { GG = 3, BG = 3 },
+  can_quick_kill={
+    "All Bow Quick-Kill: Art and civilians",
+    "Lb & Cb Quick-Kill:  Kn, HCh and Cm in close combat on an equal score"
+  },
+  quick_killed_by={ 
+    "any mounted enemy"
+  },
+  makes_flee={
+    "SCh (rear shots destroy them)"
+  },
+  movement_notes = { 
+    "Bad Going does not affect combat or speed"
+  },
+  cannot_destroy="",
+  combat_notes = { 
+    "Range is 3 BW, unless they moved more than 1 BW",
+    "Must prioritize targeting enemy in their Threat Zone",
+    "3Bw is not side supported by solid Bds",
+    "Can recoil through friendly Bds (including CP/Lit/CWg)",
+    "Bad Going does not affect combat or speed",
+  },
+}
+
+base_tool_tips['Mtd-4Bw']= {
+  name = "Solid Mounted Infantry",
+  solid = true,
+  combat = { foot = 2, mounted = 4 },
+  speed = { GG = 3, BG = 1 },
+  can_quick_kill={
+    "All bow: Art and civilians",
+    "Lb & Cb: Kn, HCh and Cm in close combat on an equal score"
+  },
+  quick_killed_by={ 
+    "any mounted enemy",
+    "any enemy if in Bad Going"
+  },
+  makes_flee={
+    "SCh (rear shots destroy them)"
+  },
+  flees_from={},
+  movement_notes = { 
+    "Eligible for subsequent off-road moves",
+    "Can make a 2nd or 3rd move in Good Going",
+  },
+  cannot_destroy="",
+  combat_notes = { 
+    "Side Support in close combat in Good Going: +1 v foot",
+    "Range is 3 BW, unless they moved more than 1 BW",
+    "Must prioritize targeting enemy in their Threat Zone",
+    "Mtd-4Bw side supported by solid Bds in Good Going",
+    "Bad Going does not affect combat, only speed",
+    "Can recoil through friendly Bd (including CP/Lit/CWg)"
+  },
+  victory_notes = {},
+  deployment_notes = {
+    "May deploy 2 BW from the table side-edges"
+  }
+}
+
+base_tool_tips['Mtd-3Bw']= {
+  name = "Fast Mounted Infantry",
+  fast = true,
+  combat = { foot = 2, mounted = 4 },
+  speed = { GG = 3, BG = 3 },
+  can_quick_kill={
+    "All bow: Art and civilians",
+    "Lb & Cb: Kn, HCh and Cm in close combat on an equal score"
+  },
+  quick_killed_by={ 
+    "any mounted enemy",
+    "any enemy if in Bad Going"
+  },
+  makes_flee={
+    "SCh (rear shots destroy them)"
+  },
+  movement_notes = { 
+   "Eligible for subsequent off-road moves",
+   "Can make a 2nd or 3rd move in Good Going",
+   "Bad Going does not affect combat or speed",
+  },
+  cannot_destroy="",
+  combat_notes = { 
+    "Side Support in close combat in Good Going: +1 v foot",
+    "Mtd-3Bw is not side supported by solid Bds",
+    "Bad Going does not affect combat or speed",
+    "Range is 3 BW, unless they moved more than 1 BW",
+    "Must prioritize targeting enemy in their Threat Zone",
+    "Can recoil through friendly Bd (including CP/Lit/CWg)",
+  },
+  deployment_notes = {
+    "May deploy 2 BW from the table side-edges"
+  }
+}
+
 --
 --
 --WWg (solid foot) War Wagons
@@ -889,6 +833,62 @@ base_tool_tips['Ps']= {
 --Cannot destroy:       close combat Cv, LCh, LH and
 --                                    LCm, who will all flee,
 --                                    nor Ps, who just flee instead
+--
+--
+--
+--
+--
+--
+--
+--CP, Lit, CWg (solid foot) Command Posts, Litters,
+--and Command Wagons
+--
+--Combat Factors:   5 v foot,   3 v mounted
+--             Combat Factor:     4 if shot at
+--
+--
+--Speed in Good Going:               2 BW
+--Speed in Rough/Bad Going:     1 BW
+--
+--   Cannot contact an enemy (even corner-to-corner)
+--   Adds side support to Sp and solid Bw in Good Going
+--   Fights as if solid Bd (but is not quick-killed like Bd)
+--   Does not pursue like Blades
+--   Never recoils
+--   Friendly Bd, Pk, Bw may recoil through these troops
+--
+--Can Quick-Kill:     Kn, HCh & Cm on an equal score
+--                               and SCh, Art and civilians
+--Only killed by:     foot on an equal score if 2 enemy
+--                               front edges are in contact,
+--                               or when doubled by anyone
+--Cannot destroy:  LH & LCm, who will flee in any
+--                               but Bad Going,  
+--                               nor Ps, who just flee instead
+--
+--
+--
+--Civilians (fast foot) Camp Followers and City Denizens
+--
+--Combat Factors:   2 v foot,   0 v mounted
+--
+--Speed in Good Going:                 2 BW
+--                 Speed in Rough/Bad Going:        1 BW
+--
+--  +1 PIP cost to move after the 1st bound
+--  Moves as if solid foot, but fights as fast foot
+--  Victory: Lost civilians do not count  
+--
+--  Sallying:-
+--  Camp Followers may leave their Camp but not return
+--
+--  City Denizens only sally if there is no garrison, and
+--  both enemy and friends are within 2 BW of their City.
+--  They cannot move more than 3 BW from their City.
+--
+--
+--Can Quick-Kill:             SCh, Art and civilians
+--Quick-Killed by:           everyone
 --
 --
 --Camps Temporary Encampments
