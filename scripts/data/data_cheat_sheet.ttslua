@@ -11,29 +11,6 @@ end
 
 
 base_tool_tips = {}
-base_tool_tips['']= {
-  name = "",
-  mounted = true,
-  solid = true,
-  fast = true,
-  combat = { foot = 0, mounted = 0, shot_at=0 },
-  speed = { GG = 0, BG = 0 },
-  can_quick_kill={
-  },
-  quick_killed_by={ 
-  },
-  only_killed_by={
-  },
-  makes_flee={},
-  flees_from={},
-  movement_notes = { 
-  },
-  cannot_destroy="",
-  combat_notes = { 
-  },
-  victory_notes = {},
-  deployment_notes = {}
-}
 
 base_tool_tips['El'] = {
   name = "Elephants",
@@ -239,7 +216,10 @@ base_tool_tips["LH"] = {
   combat = { foot = 2, mounted = 2 },
   speed = { GG = 4, BG = 1 },
   can_quick_kill="SCh, El, Kn, HCh, Bw, Mtd, Art and civilians in any going",
-  flees_from="SCh, shooting Art, & Bad Going. ", "Flee if doubled by:  Pk, Sp, Bd, Wb, Ax, Hd, WWg, civilians, and close combat Art",
+  flees_from= {
+    "SCh, shooting Art, & Bad Going. ", 
+    "Flee if doubled by:  Pk, Sp, Bd, Wb, Ax, Hd, WWg, civilians, and close combat Art",
+  },
   movement_notes = { 
     "Eligible for subsequent off-road moves", 
     "Can make a 2nd or 3rd move in Good Going", 
