@@ -21,49 +21,47 @@ base_tool_tips['']= {
   deployment_notes = {}
 }
 
-base_tool_tips = {
-  El = {
-    name = "Elephants",
-    mounted = true,
-    combat = { foot = 5, mounted = 4 },
-    speed = { GG = 2, BG = 1 },
-    can_quick_kill="Hd in Good Going, and SCh, Kn, HCh, Bw, Mtd, WWg, Art,and civilians in any going",
-    quick_killed_by="shooting Art, LH, LCm, Ax, Ps",
-    makes_flee="other Elephants and Cm",
-    cannot_destory="Ps, who just recoil instead.", 
-    movement_notes =  {
-      "+1 PIP cost to move after the 1st bound",
-      "Can pass through friendly Ps when moving or fleeing",
-      "Cannot be part of a Littoral Landing" },
-    combat_notes = {
-      "City/Fort: assault only at gates; destroyed if recoiled",
-      "Pursues 1 BW",
-      "Cannot be pushed back",
-      "Recoiling destroys any troops not in a BUA or Camp",
-      "Recoiling into a 2nd Elephant destroys both elements",
-      "If fleeing is prevented, both elements are destroyed" }
-  },
+base_tool_tips['El'] = {
+  name = "Elephants",
+  mounted = true,
+  combat = { foot = 5, mounted = 4 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill="Hd in Good Going, and SCh, Kn, HCh, Bw, Mtd, WWg, Art,and civilians in any going",
+  quick_killed_by="shooting Art, LH, LCm, Ax, Ps",
+  makes_flee="other Elephants and Cm",
+  cannot_destory="Ps, who just recoil instead.", 
+  movement_notes =  {
+    "+1 PIP cost to move after the 1st bound",
+    "Can pass through friendly Ps when moving or fleeing",
+    "Cannot be part of a Littoral Landing" },
+  combat_notes = {
+    "City/Fort: assault only at gates; destroyed if recoiled",
+    "Pursues 1 BW",
+    "Cannot be pushed back",
+    "Recoiling destroys any troops not in a BUA or Camp",
+    "Recoiling into a 2nd Elephant destroys both elements",
+    "If fleeing is prevented, both elements are destroyed" }
+}
 
-  Sch = {
+base_tool_tips['Sch'] = {
     name = "Scythed Chariots",
-    mounted = true,
-    combat = { foot = 3, mounted = 4 },
-    speed = { GG = 4, BG = 1 },
-    can_quick_kill="Pk, Sp, Bd, Wb in Good Going, & SCh, Kn, HCh, Cm, Bw, Mtd, Art and civilians in any going",
-    quick_killed_by="everyone",
-    makes_flee="everyone",
-    flees_from="shooting enemy",
-    cannot_destroy="Ps, who just recoil instead",
-    movement_notes = { 
-     "+1 PIP cost after the 1st bound unless making contact",
-     "Cannot contact a City, Fort or Camp with front-edge",
-     "Can pass through friendly Ps when moving or fleeing" },
-    combat_notes = { 
-      "Corner overlaps are ignored (flank contacts are not)",
-      "Pursues 1 BW",
-      "If fleeing is prevented, both elements are destroyed "},
-    victory_notes = {"Lost SCh do not count"}
-  }
+  mounted = true,
+  combat = { foot = 3, mounted = 4 },
+  speed = { GG = 4, BG = 1 },
+  can_quick_kill="Pk, Sp, Bd, Wb in Good Going, & SCh, Kn, HCh, Cm, Bw, Mtd, Art and civilians in any going",
+  quick_killed_by="everyone",
+  makes_flee="everyone",
+  flees_from="shooting enemy",
+  cannot_destroy="Ps, who just recoil instead",
+  movement_notes = { 
+   "+1 PIP cost after the 1st bound unless making contact",
+   "Cannot contact a City, Fort or Camp with front-edge",
+   "Can pass through friendly Ps when moving or fleeing" },
+  combat_notes = { 
+    "Corner overlaps are ignored (flank contacts are not)",
+    "Pursues 1 BW",
+    "If fleeing is prevented, both elements are destroyed "},
+  victory_notes = {"Lost SCh do not count"}
 }
 
 base_tool_tips['3Kn']= {
@@ -762,84 +760,81 @@ base_tool_tips['Mtd-3Bw']= {
   }
 }
 
---
---
---WWg (solid foot) War Wagons
---
---Combat Factors:   3 v foot,   4 v mounted
---
---
---
---
---
---
---
---
---
---
---
---Speed in Good Going:                2 BW
---Speed in Rough:                          1 BW
---Cannot deploy or move off-road in Bad Going
---
---
---  A Camp is not needed if you have more than 2 WWg
---  Cannot be part of a Littoral Landing
---  +1 PIP cost to move after the 1st bound
---  Cannot contact an enemy (even corner-to-corner)
---  Threat Zone and shooting extends from all edges
---  Range is 3 BW, unless they moved more than 1 BW
---  Must prioritize targeting  enemy in their Threat Zone
---  Never recoils, and cannot be pushed back
---
---Can Quick-Kill:         Art and civilians
---Quick-Killed by:       Elephants and shooting Art
---Makes these flee:   SCh (rear shots destroy them)
---Cannot destroy:      LH & LCm, who will flee in any
---                                   but Bad Going, 
---                                   nor Ps, who just flee instead
---
---
---Art (solid foot) Artillery
---
---Combat Factors:   4 v foot,   4 v mounted
---(in a City or Fort:   2 v foot,   2 v mounted)
---
---
---
---
---
---
---
---
---
---Speed in Good Going:                2 BW
---Speed in Rough:                          1 BW
---Cannot deploy or move off-road in Bad Going
---
--- 
---   Cannot be part of a Littoral Landing
---   +1 PIP cost to move after the 1st bound
---   Cannot contact an enemy (even corner-to-corner)
---   Range is 5 BW, but only shoots if it does not move
---   Only shoots in its own bound, but shoots back at Art
---   May pick any target; can shoot through enemy Ps
---   Can cause a City to surrender
---
---Can Quick-Kill:          Elephants and WWg when 
---                                      shooting, and Art and civilians
---Quick-Killed by:        everyone
---Makes these flee:    shooting at SCh, LH and LCm
---Cannot destroy:       close combat Cv, LCh, LH and
---                                    LCm, who will all flee,
---                                    nor Ps, who just flee instead
---
---
---
---
---
---
---
+base_tool_tips['Art']= {
+  name = "Artillery",
+  solid = true,
+  combat = { foot = 4, mounted = 2 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill={
+    "Elephants and WWg when shooting", 
+    "Art and civilians"
+  },
+  quick_killed_by={ 
+    "everyone"
+  },
+  makes_flee={
+    "shooting at SCh, LH and LCm"
+  },
+  movement_notes = { 
+    "+1 PIP cost to move after the 1st bound",
+    "Cannot move off-road in Bad Going",
+  },
+  cannot_destroy={
+    "close combat Cv, LCh, LH and LCm, who will all flee",
+    "Ps who flee instead"
+  },
+  combat_notes = { 
+    "in a City or Fort:   2 v foot,   2 v mounted",
+    "Range is 5 BW, but only shoots if it does not move",
+    "Only shoots in its own bound, but shoots back at Art",
+    "May pick any target; can shoot through enemy Ps",
+    "Cannot contact an enemy (even corner-to-corner)",
+    "Can cause a City to surrender",
+  },
+  deployment_notes = {
+    "Cannot deploy off-road in Bad Going",
+    "Cannot be part of a Littoral Landing"
+  }
+}
+
+base_tool_tips['WWg']= {
+  name = "War Wagons",
+  solid = true,
+  combat = { foot = 3, mounted = 4 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill={
+    "Art and civilians"
+  },
+  quick_killed_by={ 
+    "Elephants and shooting Art"
+  },
+  makes_flee={
+    "SCh (rear shots destroy them)"
+  },
+  flees_from={},
+  movement_notes = { 
+    "Cannot move off-road in Bad Going",
+    "+1 PIP cost to move after the 1st bound"
+  },
+  cannot_destroy={
+    "LH & LCm, who will flee in any but Bad Going",
+    "Ps who flee instead"
+  },
+  combat_notes = { 
+    "Cannot contact an enemy (even corner-to-corner)",
+    "Threat Zone and shooting extends from all edges",
+    "Range is 3 BW, unless they moved more than 1 BW",
+    "Must prioritize targeting  enemy in their Threat Zone",
+    " Never recoils, and cannot be pushed back"
+  },
+  victory_notes = {},
+  deployment_notes = {
+    "Cannot deploy off-road in Bad Going",
+    "A Camp is not needed if you have more than 2 WWg",
+    "Cannot be part of a Littoral Landing"
+  }
+}
+
 --CP, Lit, CWg (solid foot) Command Posts, Litters,
 --and Command Wagons
 --
