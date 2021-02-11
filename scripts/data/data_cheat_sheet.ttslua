@@ -1,3 +1,15 @@
+function shallow_copy(orig)
+  if not (type(orig) == 'table') then
+    return orig
+  end
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = v
+  end
+  return result
+end
+
+
 base_tool_tips = {}
 base_tool_tips['']= {
   name = "",
@@ -9,6 +21,8 @@ base_tool_tips['']= {
   can_quick_kill={
   },
   quick_killed_by={ 
+  },
+  only_killed_by={
   },
   makes_flee={},
   flees_from={},
@@ -276,7 +290,11 @@ base_tool_tips['4Pk'] = {
   speed = { GG = 2, BG = 1 },
   can_quick_kill="SCh, Art and civilians",
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
-  cannot_destory="Cv & LCh, who will flee if in Good Going, nor LH & LCm, who flee in any but Bad Going, nor Ps, who just flee instead",
+  cannot_destory={
+    "Cv & LCh, who will flee if in Good Going",
+    "LH & LCm, who flee in any but Bad Going", 
+    "Ps flee instead"
+  },
   combat_notes = {
     "Rear Support in close combat in Good Going:  +3 v foot (not Ps), +1 v El, SCh, Kn, HCh",
     "Pursues foot (other than Ps) ½ BW",
@@ -292,7 +310,11 @@ base_tool_tips['3Pk'] = {
   speed = { GG = 3, BG = 3 },
   can_quick_kill="SCh, Art and civilians and by Wb in any going",
   quick_killed_by="SCh, Kn and HCh in Good Going",
-  cannot_destory="Cv & LCh, who will flee if in Good Going, nor LH & LCm, who flee in any but Bad Going, nor Ps, who just flee instead",
+  cannot_destory={
+    "Cv & LCh, who will flee if in Good Going",
+    "LH & LCm, who flee in any but Bad Going", 
+    "who flee instead"
+  },
   combat_notes = {
     "Rear Support in close combat in Good Going:  +3 v foot (not Ps),  +1 v El, SCh, Kn, HCh",
   "Pursues foot (other than Ps) ½ BW",
@@ -308,7 +330,11 @@ base_tool_tips['Sp'] = {
   speed = { GG = 2, BG = 1 },
   can_quick_kill="SCh, Art and civilians",
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
-  cannot_destory="Cv & LCh, who will flee if in Good Going, nor LH & LCm, who flee in any but Bad Going, nor Ps, who just flee instead",
+  cannot_destory={
+    "Cv & LCh, who will flee if in Good Going",
+    "LH & LCm, who flee in any but Bad Going",
+    "Ps flee instead",
+  },
   combat_notes = {
     "Side Support in close combat in Good Going: +1 v foot", 
     "Side supported by any Sp or solid Bds in Good Going"
@@ -322,7 +348,11 @@ base_tool_tips['8Sp'] = {
   speed = { GG = 2, BG = 1 },
   can_quick_kill="SCh, Art and civilians",
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
-  cannot_destory="Cv & LCh, who will flee if in Good Going, nor LH & LCm, who flee in any but Bad Going, nor Ps, who just flee instead",
+  cannot_destory={
+    "Cv & LCh, who will flee if in Good Going",
+    "LH & LCm, who flee in any but Bad Going",
+    "Ps flee instead",
+  },
   combat_notes = {
     "Side Support in close combat in Good Going: +1 v foot", 
     "8Sp in close combat in Good Going:  +1 v foot",
@@ -344,7 +374,7 @@ base_tool_tips['4Bd'] = {
   flees_from="",
   cannot_destory={
     "LH & LCm, who will flee in any but Bad Going.",
-    "Ps, who flee instead"
+    "Ps flee instead"
   },
   movement_notes =  {
   },
@@ -517,7 +547,7 @@ base_tool_tips['7Hd'] = {
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
     "LH & LCm  who flee in any but Bad Going",
-    "Ps just flee instead"
+    "Ps flee instead"
   }, 
   movement_notes =  {
     "+1 PIP cost to move after the 1st bound",
@@ -550,7 +580,7 @@ base_tool_tips['5Hd'] = {
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
     "LH & LCm  who flee in any but Bad Going",
-    "Ps just flee instead"
+    "Ps flee instead"
   }, 
   movement_notes =  {
     "+1 PIP cost to move after the 1st bound",
@@ -781,7 +811,7 @@ base_tool_tips['Art']= {
   },
   cannot_destroy={
     "close combat Cv, LCh, LH and LCm, who will all flee",
-    "Ps who flee instead"
+    "Ps flee instead"
   },
   combat_notes = { 
     "in a City or Fort:   2 v foot,   2 v mounted",
@@ -818,7 +848,7 @@ base_tool_tips['WWg']= {
   },
   cannot_destroy={
     "LH & LCm, who will flee in any but Bad Going",
-    "Ps who flee instead"
+    "Ps flee instead"
   },
   combat_notes = { 
     "Cannot contact an enemy (even corner-to-corner)",
@@ -835,70 +865,99 @@ base_tool_tips['WWg']= {
   }
 }
 
---CP, Lit, CWg (solid foot) Command Posts, Litters,
---and Command Wagons
---
---Combat Factors:   5 v foot,   3 v mounted
---             Combat Factor:     4 if shot at
---
---
---Speed in Good Going:               2 BW
---Speed in Rough/Bad Going:     1 BW
---
---   Cannot contact an enemy (even corner-to-corner)
---   Adds side support to Sp and solid Bw in Good Going
---   Fights as if solid Bd (but is not quick-killed like Bd)
---   Does not pursue like Blades
---   Never recoils
---   Friendly Bd, Pk, Bw may recoil through these troops
---
---Can Quick-Kill:     Kn, HCh & Cm on an equal score
---                               and SCh, Art and civilians
---Only killed by:     foot on an equal score if 2 enemy
---                               front edges are in contact,
---                               or when doubled by anyone
---Cannot destroy:  LH & LCm, who will flee in any
---                               but Bad Going,  
---                               nor Ps, who just flee instead
---
---
---
---Civilians (fast foot) Camp Followers and City Denizens
---
---Combat Factors:   2 v foot,   0 v mounted
---
---Speed in Good Going:                 2 BW
---                 Speed in Rough/Bad Going:        1 BW
---
---  +1 PIP cost to move after the 1st bound
---  Moves as if solid foot, but fights as fast foot
---  Victory: Lost civilians do not count  
---
---  Sallying:-
---  Camp Followers may leave their Camp but not return
---
---  City Denizens only sally if there is no garrison, and
---  both enemy and friends are within 2 BW of their City.
---  They cannot move more than 3 BW from their City.
---
---
---Can Quick-Kill:             SCh, Art and civilians
---Quick-Killed by:           everyone
+base_tool_tips['CP']= {
+  name = "Command Posts",
+  solid = true,
+  combat = { foot = 5, mounted = 3, shot_at=4 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill={
+    "Kn, HCh & Cm on an equal score",
+    "SCh, Art and civilians"
+  },
+  quick_killed_by={ 
+  },
+  only_killed_by = {
+    "foot on an equal score if 2 enemy  front edges are in contact", 
+    "or when doubled by anyone"
+  },
+  makes_flee={},
+  flees_from={},
+  movement_notes = { 
+  },
+  cannot_destroy={
+    "LH & LCm, who will flee in any but Bad Going",
+    "Ps flee instead"
+  },
+  combat_notes = { 
+    "Cannot contact an enemy (even corner-to-corner)",
+    "Adds side support to Sp and solid Bw in Good Going",
+    "Fights as if solid Bd (but is not quick-killed like Bd)",
+    "Does not pursue like Blades",
+    "Never recoils",
+    "Friendly Bd, Pk, Bw may recoil through these troops"
+  },
+  victory_notes = {},
+  deployment_notes = {}
+}
+
+base_tool_tips['Lit']=shallow_copy(base_tool_tips['CP'])
+base_tool_tips['Lit']="Litters"
+
+base_tool_tips['Cwg']= shallow_copy(base_tool_tips['CP'])
+base_tool_tips['CWg']="Command Wagons"
+
+base_tool_tips['Civilians_Capmp_Followers_City_Denizens']= {
+  name = "",
+  fast = true,
+  combat = { foot = 2, mounted = 0 },
+  speed = { GG = 2, BG = 1 },
+  can_quick_kill={
+    "SCh, Art and civilians"
+  },
+  quick_killed_by={ 
+    "everyone"
+  },
+  only_killed_by={
+  },
+  makes_flee={},
+  flees_from={},
+  movement_notes = { 
+    "+1 PIP cost to move after the 1st bound",
+    "Moves as if solid foot, but fights as fast foot"
+  },
+  cannot_destroy="",
+  combat_notes = { 
+  },
+  victory_notes = {
+  },
+  deployment_notes = {}
+}
+
+base_tool_tips['Civilians']= 
+  shallow_copy(base_tool_tips['Civilians_Capmp_Followers_City_Denizens'])
+assert(nil ~= base_tool_tips['Civilians'])
+table.insert(base_tool_tips['Civilians'].victory_notes,
+  "Lost civilians do not count")
+
+base_tool_tips['Camp Followers']= 
+  shallow_copy(base_tool_tips['Civilians_Capmp_Followers_City_Denizens'])
+assert(nil ~= base_tool_tips['Camp Followers'])
+table.insert(base_tool_tips['Camp Followers'].movement_notes,
+  "Sallying: Camp Followers may leave their Camp but not return")
+
+base_tool_tips['City Denizens']= 
+  shallow_copy(base_tool_tips['Civilians_Capmp_Followers_City_Denizens'])
+assert(nil ~=  base_tool_tips['City Denizens'])
+table.insert(base_tool_tips['City Denizens'].movement_notes,
+  "Sallying: City Denizens only sally if there is no garrison, and both enemy and friends are within 2 BW of their City.")
+table.insert(base_tool_tips['City Denizens'].movement_notes,
+  "Cannot move more than 3 BW from their City.")
+
 --
 --
 --Camps Temporary Encampments
 --
 --Defence Factor:   +2 to foot or civilians 
---
---
---
---
---
---
---
---
---
---
 --
 -- Deploy touching the rear table edge or Waterway 
 --     of their own deployment area (i.e. at least 4 BW  
@@ -929,15 +988,6 @@ base_tool_tips['WWg']= {
 --                                               +2 to defending civilians
 --              If enemy partially in a non-paltry River: +1 
 --
---
---   
---
---
---
---
---
---
---
 --Place so that all of a City or Fort is within 6 BW of 2
 --   battlefield edges. May touch any battlefield edge.    
 --A City can, a Fort must, be garrisoned by foot troops
@@ -961,14 +1011,6 @@ base_tool_tips['WWg']= {
 --
 --          Plough is Rough instead of Good Going if the 1st 
 --          PIP roll is a ‘1’ (or if less than ‘8’ is rolled in BBDBA).
---
---
---
---
---
---
---
---
 --
 --   Place Waterway 1st, then compulsories, then others.
 --   Plough and Linear Terrain must, Gentle Hills may,
