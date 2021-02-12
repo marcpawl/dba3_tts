@@ -193,7 +193,8 @@ base_tool_tips["Cm"] = {
   },
   quick_killed_by={
     "Lb, Cb and Bds in close combat on an equal score",
-    "SCh in any going, or if in Bad Going"
+    "SCh in any going", 
+    "any if in Bad Going"
   },
   flees_from="Elephants",
   movement_notes = { 
@@ -217,7 +218,9 @@ base_tool_tips["Cv"] = {
     "SCh, Bw, Mtd, Art, civilians in any going"
   },
   flees_from={
-    "Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art.  SCh, or from any in Bad Going"
+    "Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art.",
+    "SCh",
+    "any in Bad Going"
   },
   movement_notes = { 
     "Can pass through friendly Ps when moving",
@@ -240,7 +243,11 @@ base_tool_tips["6Cv"] = {
     "Ps in Good Going",
     "SCh, Bw,Mtd, Art, civilians in any going"
   }, 
-  flees_from="SCh, or from any in Bad Going.  Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art",
+  flees_from={
+    "SCh", 
+    "any in Bad Going",
+    "Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art"
+  },
   movement_notes = { 
     "May deploy 2 BW from the table side-edges",
     "Can pass through friendly Ps when moving", 
@@ -265,7 +272,8 @@ base_tool_tips["LCH"] = {
     "SCh, Bw, Mtd, Art, civilians in any going"
   },
   flees_from={
-    "SCh, or from any in Bad Going.",
+    "SCh",
+    "any in Bad Going.",
     "Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art",
   },
   movement_notes = { 
