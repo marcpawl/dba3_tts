@@ -196,7 +196,7 @@ base_tool_tips["Cm"] = {
     "SCh in any going", 
     "any if in Bad Going"
   },
-  flees_from="Elephants",
+  flees_from={"Elephants"},
   movement_notes = { 
     "Dunes and Oasis counts as Good Going", 
    "Can pass through friendly Ps when moving or fleeing",
