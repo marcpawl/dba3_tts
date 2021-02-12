@@ -28,7 +28,7 @@ base_tool_tips = {}
 --  flees_from={},
 --  movement_notes = { 
 --  },
---  cannot_destroy="",
+--  cannot_destroy={},
 --  combat_notes = { 
 --  },
 --  victory_notes = {},
@@ -43,8 +43,8 @@ base_tool_tips['El'] = {
   speed = { GG = 2, BG = 1 },
   can_quick_kill={"Hd in Good Going, and SCh, Kn, HCh, Bw, Mtd, WWg, Art,and civilians in any going"},
   quick_killed_by={"shooting Art, LH, LCm, Ax, Ps"},
-  makes_flee="other Elephants and Cm",
-  cannot_destory="Ps, who just recoil instead.", 
+  makes_flee={"other Elephants and Cm"},
+  cannot_destory={"Ps recoil instead."}, 
   movement_notes =  {
     "+1 PIP cost to move after the 1st bound",
     "Can pass through friendly Ps when moving or fleeing",
@@ -59,15 +59,17 @@ base_tool_tips['El'] = {
 }
 
 base_tool_tips['Sch'] = {
-    name = "Scythed Chariots",
+  name = "Scythed Chariots",
   mounted = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill={"Pk, Sp, Bd, Wb in Good Going, & SCh, Kn, HCh, Cm, Bw, Mtd, Art and civilians in any going"},
+  can_quick_kill={
+    "Pk, Sp, Bd, Wb in Good Going, & SCh, Kn, HCh, Cm, Bw, Mtd, Art and civilians in any going"
+  },
   quick_killed_by={"everyone"},
-  makes_flee="everyone",
-  flees_from="shooting enemy",
-  cannot_destroy="Ps, who just recoil instead",
+  makes_flee={"everyone"},
+  flees_from={"shooting enemy"},
+  cannot_destroy={"Ps recoil instead"},
   movement_notes = { 
    "+1 PIP cost after the 1st bound unless making contact",
    "Cannot contact a City, Fort or Camp with front-edge",
@@ -104,9 +106,6 @@ base_tool_tips["6Kn"] = {
   speed = { GG = 3, BG = 1 },
   can_quick_kill={"Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by={"Lb, Cb and Bds in close combat on an equal score, and by SCh, El, Cm, LH and LCm"},
-  makes_flee="",
-  flees_from="",
-  cannot_destroy="",
   movement_notes = { 
     "Can pass through friendly Ps when moving",
     "" },
@@ -221,7 +220,10 @@ base_tool_tips["LCH"] = {
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 4, BG = 1 },
   quick_killed_by={"Ps in Good Going, and SCh, Bw, Mtd, Art, civilians in any going"},
-  flees_from="SCh, or from any in Bad Going.  Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art",
+  flees_from={
+    "SCh, or from any in Bad Going.",
+    "Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art",
+  },
   movement_notes = { 
     "May deploy 2 BW from the table side-edges",  
     "Can pass through friendly Ps when moving"
@@ -266,7 +268,9 @@ base_tool_tips['LCm'] = {
   combat = { foot = 2, mounted = 2 },
   speed = { GG = 4, BG = 1 },
   can_quick_kill={"SCh, El, Kn, HCh, Bw, Mtd, Art and civilians in any going"},
-flees_from="SCh, shooting Art, & Bad Going. Flee if doubled by:  Pk, Sp, Bd, Wb, Ax, Hd, WWg, civilians, and close combat Art. Fleeing is not halted by Bad Going",
+  flees_from={
+    "SCh, shooting Art, & Bad Going.",
+    "Flee if doubled by:  Pk, Sp, Bd, Wb, Ax, Hd, WWg, civilians, and close combat Art."},
   movement_notes =  {
     "Dunes and Oasis counts as Good Going",
     "Can pass through friendly Ps when moving",
@@ -279,7 +283,8 @@ flees_from="SCh, shooting Art, & Bad Going. Flee if doubled by:  Pk, Sp, Bd, Wb,
     "Battlefield edge overlap does not affect LCm",
     "Command range is 20 BW (even if out of sight)",
     "Recoils through any friends (except El, Pk, Hd)",
-    "Flees through Ps" 
+    "Flees through Ps",
+    "Fleeing is not halted by Bad Going" 
   }
 }
 
@@ -320,9 +325,9 @@ base_tool_tips['3Pk'] = {
   },
   combat_notes = {
     "Rear Support in close combat in Good Going:  +3 v foot (not Ps),  +1 v El, SCh, Kn, HCh",
-  "Pursues foot (other than Ps) ½ BW",
-  "Recoils through friendly Bds (including CP/Lit/CWg)",
-  "Mounted cannot recoil or flee through Pk"
+    "Pursues foot (other than Ps) 1/2 BW",
+    "Recoils through friendly Bds (including CP/Lit/CWg)",
+    "Mounted cannot recoil or flee through Pk"
   }
 }
 
@@ -382,13 +387,9 @@ base_tool_tips['4Bd'] = {
     "SCh, Kn and HCh in Good Going",
     "Wb"
   },
-  makes_flee="",
-  flees_from="",
   cannot_destory={
     "LH & LCm, who will flee in any but Bad Going.",
     "Ps flee instead"
-  },
-  movement_notes =  {
   },
   combat_notes = {
     'Combat Factor: 4 if shot at',
@@ -411,23 +412,17 @@ base_tool_tips['3Bd'] = {
     "SCh, Kn and HCh in Good Going",
     "Wb in any going"
   },
-  makes_flee="",
-  flees_from="",
   cannot_destory={
     "LH & LCm, who will flee in any but Bad Going",
     "Ps flee instead"
   }, 
-  movement_notes =  {
-  },
   combat_notes = {
      "Combat Factor:     4 if shot at",
      "Does not give side support to solid Bw or Sp",
-     " Pursues foot (other than Ps) ½ BW",
+     " Pursues foot (other than Ps) 1/2 BW",
      "3Bd may recoil through friendly Sp",
      "3Bd, Pk and Bw may recoil through friendly Bds"
   },
-  victory_notes = {
-  }
 }
 
 base_tool_tips['6Bd'] = {
@@ -440,18 +435,14 @@ base_tool_tips['6Bd'] = {
     "SCh, Kn and HCh in Good Going",
     "Wb"
   },
-  makes_flee="",
-  flees_from="",
   cannot_destory={
     "LH & LCm, who will flee in any but Bad Going",
    "Ps flee instead"
   }, 
-  movement_notes =  {
-  },
   combat_notes = {
     "6Bd in close combat in Good Going:  +1 v foot",
     "Does not give side support to solid Bw or Sp",
-    "Pursues foot (other than Ps) ½ BW",
+    "Pursues foot (other than Ps) 1/2 BW",
     "6Bd may recoil through friendly Sp",
     "6Bd, Pk and Bw may recoil through friendly Bds",
   },
@@ -477,7 +468,7 @@ base_tool_tips['4Wb'] = {
   combat_notes = {
     "Rear Support in close combat in Good Going: +1 v foot (other than Ps)",
    "Bad Going does not affect combat or speed",
-   "Pursues foot (other than Ps) ½ BW"
+   "Pursues foot (other than Ps) 1/2 BW"
   },
 }
 
@@ -498,7 +489,7 @@ base_tool_tips['3Wb'] = {
   combat_notes = {
     "Rear Support in close combat in Good Going: +1 v foot (other than Ps)",
     "Bad Going does not affect combat or speed",
-   "Pursues foot (other than Ps) ½ BW"
+   "Pursues foot (other than Ps) 1/2 BW"
   },
 }
 
@@ -533,8 +524,6 @@ base_tool_tips['3Ax'] = {
     "avoid Pk or Sp in Good Going",
     "avoid  Bds in Rough or Good Going"
   },
-  cannot_destory={
-  }, 
   movement_notes =  {
     "Bad Going does not affect combat or speed",
     "May deploy 2 BW from the table side-edges"
@@ -627,9 +616,8 @@ base_tool_tips['Ps']= {
     "Corner overlaps are ignored (flank contacts are not)",
     "Recoils through any friends (except other Ps)",
     "Fleeing is not halted by Bad Going",
-    "Not destroyed by:    El and SCh, only recoiled"
+    "Not destroyed by: El and SCh, only recoiled"
   },
-  victory_notes = {},
   deployment_notes = {
     "May deploy 2 BW from the table side-edges",
   }
@@ -650,10 +638,6 @@ base_tool_tips['4Bw']= {
   makes_flee={
     "SCh (rear shots destroy them)"
   },
-  flees_from={},
-  movement_notes = { 
-  },
-  cannot_destroy="",
   combat_notes = { 
     "Side Support in close combat in Good Going: +1 v foot",
     "Range is 3 BW, unless they moved more than 1 BW",
@@ -662,8 +646,6 @@ base_tool_tips['4Bw']= {
     "Bad Going does not affect combat, only speed",
     "Can recoil through friendly Bds (including CP/Lit/CWg)"
   },
-  victory_notes = {},
-  deployment_notes = {}
 }
 
 base_tool_tips['8Bw']= {
@@ -681,10 +663,6 @@ base_tool_tips['8Bw']= {
   makes_flee={
     "SCh (rear shots destroy them)"
   },
-  flees_from={},
-  movement_notes = { 
-  },
-  cannot_destroy="",
   combat_notes = { 
     "Side Support in close combat in Good Going: +1 v foot",
     "8Bw in close combat in Good Going:  +1 v foot",
@@ -717,7 +695,6 @@ base_tool_tips['3Bw']= {
   movement_notes = { 
     "Bad Going does not affect combat or speed"
   },
-  cannot_destroy="",
   combat_notes = { 
     "Range is 3 BW, unless they moved more than 1 BW",
     "Must prioritize targeting enemy in their Threat Zone",
@@ -747,7 +724,6 @@ base_tool_tips['Mtd-4Bw']= {
     "Eligible for subsequent off-road moves",
     "Can make a 2nd or 3rd move in Good Going",
   },
-  cannot_destroy="",
   combat_notes = { 
     "Side Support in close combat in Good Going: +1 v foot",
     "Range is 3 BW, unless they moved more than 1 BW",
@@ -756,7 +732,6 @@ base_tool_tips['Mtd-4Bw']= {
     "Bad Going does not affect combat, only speed",
     "Can recoil through friendly Bd (including CP/Lit/CWg)"
   },
-  victory_notes = {},
   deployment_notes = {
     "May deploy 2 BW from the table side-edges"
   }
@@ -783,7 +758,6 @@ base_tool_tips['Mtd-3Bw']= {
    "Can make a 2nd or 3rd move in Good Going",
    "Bad Going does not affect combat or speed",
   },
-  cannot_destroy="",
   combat_notes = { 
     "Side Support in close combat in Good Going: +1 v foot",
     "Mtd-3Bw is not side supported by solid Bds",
@@ -864,7 +838,6 @@ base_tool_tips['WWg']= {
     "Must prioritize targeting  enemy in their Threat Zone",
     " Never recoils, and cannot be pushed back"
   },
-  victory_notes = {},
   deployment_notes = {
     "Cannot deploy off-road in Bad Going",
     "A Camp is not needed if you have more than 2 WWg",
@@ -885,10 +858,6 @@ base_tool_tips['CP']= {
     "foot on an equal score if 2 enemy  front edges are in contact", 
     "when doubled by anyone"
   },
-  makes_flee={},
-  flees_from={},
-  movement_notes = { 
-  },
   cannot_destroy={
     "LH & LCm, who will flee in any but Bad Going",
     "Ps flee instead"
@@ -901,18 +870,17 @@ base_tool_tips['CP']= {
     "Never recoils",
     "Friendly Bd, Pk, Bw may recoil through these troops"
   },
-  victory_notes = {},
-  deployment_notes = {}
 }
 
 base_tool_tips['Lit']=shallow_copy(base_tool_tips['CP'])
-base_tool_tips['Lit']="Litters"
+assert(nil ~= base_tool_tips['Lit'])
+base_tool_tips['Lit']['name']="Litters"
 
 base_tool_tips['Cwg']= shallow_copy(base_tool_tips['CP'])
-base_tool_tips['CWg']="Command Wagons"
+assert(nil ~= base_tool_tips['Cwg'])
+base_tool_tips['Cwg']['name']="Command Wagons"
 
 base_tool_tips['Civilians_Camp_Followers_City_Denizens']= {
-  name = "",
   fast = true,
   combat = { foot = 2, mounted = 0 },
   speed = { GG = 2, BG = 1 },
@@ -926,9 +894,6 @@ base_tool_tips['Civilians_Camp_Followers_City_Denizens']= {
     "+1 PIP cost to move after the 1st bound",
     "Moves as if solid foot, but fights as fast foot"
   },
-  cannot_destroy="",
-  combat_notes = { 
-  },
   victory_notes = {
   },
   deployment_notes = {}
@@ -936,13 +901,11 @@ base_tool_tips['Civilians_Camp_Followers_City_Denizens']= {
 
 base_tool_tips['Civilians']= 
   shallow_copy(base_tool_tips['Civilians_Camp_Followers_City_Denizens'])
-assert(nil ~= base_tool_tips['Civilians'])
 table.insert(base_tool_tips['Civilians'].victory_notes,
   "Lost civilians do not count")
 
 base_tool_tips['Camp Followers']= 
   shallow_copy(base_tool_tips['Civilians_Camp_Followers_City_Denizens'])
-assert(nil ~= base_tool_tips['Camp Followers'])
 table.insert(base_tool_tips['Camp Followers'].movement_notes,
   "Sallying: Camp Followers may leave their Camp but not return")
 
