@@ -1,14 +1,3 @@
-function shallow_copy(orig)
-  if not (type(orig) == 'table') then
-    return orig
-  end
-  local result={}
-  for k,v in pairs(orig) do
-    result[k] = v
-  end
-  return result
-end
-
 
 base_tool_tips = {}
 --mabase_tool_tips['']= {
@@ -696,7 +685,6 @@ base_tool_tips['4Bw']= {
   speed = { GG = 2, BG = 1 },
   can_quick_kill={
     "All Bow: Art and civilians",
-    "Lb & Cb:  Kn, HCh and Cm in close combat on an equal score"
   },
   quick_killed_by={ 
     "any mounted enemy"
@@ -713,6 +701,14 @@ base_tool_tips['4Bw']= {
     "Can recoil through friendly Bds (including CP/Lit/CWg)"
   },
 }
+
+base_tool_tips['4Cb']= deep_copy(base_tool_tips['4Bw'])
+base_tool_tips['4Cb'].name = "Solid Crossbows"
+table.insert(base_tool_tips['4Cb'].can_quick_kill,
+    "Kn, HCh and Cm in close combat on an equal score")
+
+base_tool_tips['4Lb']= deep_copy(base_tool_tips['4BCb'])
+base_tool_tips['4Lb'].name = "Solid Longbows"
 
 base_tool_tips['8Bw']= {
   name = "Double Ranked Solid Bows",
@@ -769,6 +765,14 @@ base_tool_tips['3Bw']= {
     "Bad Going does not affect combat or speed",
   },
 }
+
+base_tool_tips['3Cb']= deep_copy(base_tool_tips['3Bw'])
+base_tool_tips['3Cb'].name = "Fast Crossbows"
+table.insert(base_tool_tips['4Cb'].can_quick_kill,
+    "Kn, HCh and Cm in close combat on an equal score")
+
+base_tool_tips['4Lb']= deep_copy(base_tool_tips['4BCb'])
+base_tool_tips['4Lb'].name = "Fast Longbows"
 
 base_tool_tips['Mtd-4Bw']= {
   name = "Solid Mounted Infantry",

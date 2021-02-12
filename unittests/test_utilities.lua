@@ -1,6 +1,7 @@
 lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
 require('scripts/utilities')
+require('scripts/utilities_lua')
 
 function test_shallow_copy_on_number_returns_itself()
   local expected = 3.14

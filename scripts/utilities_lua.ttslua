@@ -150,3 +150,27 @@ function equals_float(f1, f2, epsilon)
     epsilon = epsilon or 0.00001
     return math.abs(f1 - f2) < epsilon
 end
+
+-- copies a table, but returning the same objects as the members.
+function shallow_copy(orig)
+  if not (type(orig) == 'table') then
+    return orig
+  end
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = v
+  end
+  return result
+end
+
+-- copies a table, but all objects are recursively copied.
+function deep_copy(orig)
+  if not (type(orig) == 'table') then
+    return orig
+  end
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = deep_copy(v)
+  end
+  return result
+end
