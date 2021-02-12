@@ -664,7 +664,8 @@ base_tool_tips['Ps']= {
   },
   makes_flee = {},
   flees_from = {
-    "Flee if doubled by:  other mounted in Rough/Bad  Going, and by all foot (except  Ax, Ps, and close combat Bw)"
+    "Flee if doubled by:  other mounted in Rough/Bad  Going",
+    "all foot (except  Ax, Ps, and close combat Bw)"
   },
   movement_notes = { 
     "Group moves not limited by Bad Going",
