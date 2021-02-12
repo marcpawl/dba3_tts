@@ -707,7 +707,7 @@ base_tool_tips['4Cb'].name = "Solid Crossbows"
 table.insert(base_tool_tips['4Cb'].can_quick_kill,
     "Kn, HCh and Cm in close combat on an equal score")
 
-base_tool_tips['4Lb']= deep_copy(base_tool_tips['4BCb'])
+base_tool_tips['4Lb']=deep_copy(base_tool_tips['4Cb'])
 base_tool_tips['4Lb'].name = "Solid Longbows"
 
 base_tool_tips['8Bw']= {
