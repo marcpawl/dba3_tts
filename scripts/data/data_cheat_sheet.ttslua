@@ -50,7 +50,7 @@ base_tool_tips['El'] = {
     "If fleeing is prevented, both elements are destroyed" }
 }
 
-base_tool_tips['Sch'] = {
+base_tool_tips['SCh'] = {
   name = "Scythed Chariots",
   mounted = true,
   combat = { foot = 3, mounted = 4 },
