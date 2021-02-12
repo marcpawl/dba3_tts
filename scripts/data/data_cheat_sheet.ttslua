@@ -739,6 +739,14 @@ base_tool_tips['8Bw']= {
   },
 }
 
+base_tool_tips['8Cb']= deep_copy(base_tool_tips['8Bw'])
+base_tool_tips['8Cb'].name = "Double Ranked Solid Crossbows"
+table.insert(base_tool_tips['8Cb'].can_quick_kill,
+    "Kn, HCh and Cm in close combat on an equal score")
+
+base_tool_tips['8Lb']= deep_copy(base_tool_tips['8Cb'])
+base_tool_tips['8Lb'].name = "Double Ranked Solid Longbows"
+
 base_tool_tips['3Bw']= {
   name = "Fast Bows",
   fast = true,
@@ -768,11 +776,11 @@ base_tool_tips['3Bw']= {
 
 base_tool_tips['3Cb']= deep_copy(base_tool_tips['3Bw'])
 base_tool_tips['3Cb'].name = "Fast Crossbows"
-table.insert(base_tool_tips['4Cb'].can_quick_kill,
+table.insert(base_tool_tips['3Cb'].can_quick_kill,
     "Kn, HCh and Cm in close combat on an equal score")
 
-base_tool_tips['4Lb']= deep_copy(base_tool_tips['4Cb'])
-base_tool_tips['4Lb'].name = "Fast Longbows"
+base_tool_tips['3Lb']= deep_copy(base_tool_tips['3Cb'])
+base_tool_tips['3Lb'].name = "Fast Longbows"
 
 base_tool_tips['Mtd-4Bw']= {
   name = "Solid Mounted Infantry",
