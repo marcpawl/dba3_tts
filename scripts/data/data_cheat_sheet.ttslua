@@ -251,7 +251,7 @@ base_tool_tips["6Cv"] = {
   }
 }
 
-base_tool_tips["LCH"] = {
+base_tool_tips["LCh"] = {
   name = "Light Chariots",
   mounted = true,
   combat = { foot = 3, mounted = 3 },
