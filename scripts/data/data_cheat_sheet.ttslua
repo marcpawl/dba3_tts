@@ -434,7 +434,7 @@ base_tool_tips['8Sp'] = {
 base_tool_tips['4Bd'] = {
   name = "Solid Blades",
   solid = true,
-  combat = { foot = 5, mounted = 3 },
+  combat = { foot = 5, mounted = 3, shot_at = 4 },
   speed = { GG = 2, BG = 1 },
   can_quick_kill={
     "Kn, HCh & Cm on an equal score",
@@ -449,7 +449,6 @@ base_tool_tips['4Bd'] = {
     "Ps flee instead"
   },
   combat_notes = {
-    'Combat Factor: 4 if shot at',
     '4Bd adds side support to solid Bw/Sp in Good Going',
     'Pursues foot (other than Ps) ½ BW',
     '4Bd may recoil through friendly Sp',
@@ -462,7 +461,7 @@ base_tool_tips['4Bd'] = {
 base_tool_tips['3Bd'] = {
   name = "Fast Blades",
   fast = true,
-  combat = { foot = 5, mounted = 3 },
+  combat = { foot = 5, mounted = 3, shot_at = 4 },
   speed = { GG = 3, BG = 3 },
   can_quick_kill={
     "Kn, HCh & Cm on an equal score",
@@ -477,7 +476,6 @@ base_tool_tips['3Bd'] = {
     "Ps flee instead"
   }, 
   combat_notes = {
-     "Combat Factor:     4 if shot at",
      "Does not give side support to solid Bw or Sp",
      " Pursues foot (other than Ps) 1/2 BW",
      "3Bd may recoil through friendly Sp",
