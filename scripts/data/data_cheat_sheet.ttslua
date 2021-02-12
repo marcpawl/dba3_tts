@@ -11,14 +11,38 @@ end
 
 
 base_tool_tips = {}
+--mabase_tool_tips['']= {
+--  name = "",
+--  mounted = true,
+--  solid = true,
+--  fast = true,
+--  combat = { foot = 0, mounted = 0, shot_at=0 },
+--  speed = { GG = 0, BG = 0 },
+--  can_quick_kill={
+--  },
+--  quick_killed_by={ 
+--  },
+--  only_killed_by={
+--  },
+--  makes_flee={},
+--  flees_from={},
+--  movement_notes = { 
+--  },
+--  cannot_destroy="",
+--  combat_notes = { 
+--  },
+--  victory_notes = {},
+--  deployment_notes = {}
+--}
+ 
 
 base_tool_tips['El'] = {
   name = "Elephants",
   mounted = true,
   combat = { foot = 5, mounted = 4 },
   speed = { GG = 2, BG = 1 },
-  can_quick_kill="Hd in Good Going, and SCh, Kn, HCh, Bw, Mtd, WWg, Art,and civilians in any going",
-  quick_killed_by="shooting Art, LH, LCm, Ax, Ps",
+  can_quick_kill={"Hd in Good Going, and SCh, Kn, HCh, Bw, Mtd, WWg, Art,and civilians in any going"},
+  quick_killed_by={"shooting Art, LH, LCm, Ax, Ps"},
   makes_flee="other Elephants and Cm",
   cannot_destory="Ps, who just recoil instead.", 
   movement_notes =  {
@@ -39,7 +63,7 @@ base_tool_tips['Sch'] = {
   mounted = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill="Pk, Sp, Bd, Wb in Good Going, & SCh, Kn, HCh, Cm, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"Pk, Sp, Bd, Wb in Good Going, & SCh, Kn, HCh, Cm, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by="everyone",
   makes_flee="everyone",
   flees_from="shooting enemy",
@@ -60,7 +84,7 @@ base_tool_tips['3Kn']= {
   mounted = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 3, BG = 1 },
-  can_quick_kill="Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by="Lb, Cb and Bds in close combat on an equal score, and by SCh, El, Cm, LH and LCm",
   movement_notes = { 
     "Can pass through friendly Ps when moving"
@@ -78,7 +102,7 @@ base_tool_tips["6Kn"] = {
   mounted = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 3, BG = 1 },
-  can_quick_kill="Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by="Lb, Cb and Bds in close combat on an equal score, and by SCh, El, Cm, LH and LCm",
   makes_flee="",
   flees_from="",
@@ -102,7 +126,7 @@ base_tool_tips["4Kn"] = {
   mounted = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 3, BG = 1 },
-  can_quick_kill="Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd,  Art and civilians in any going",
+  can_quick_kill={"Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd,  Art and civilians in any going"},
   quick_killed_by="Lb, Cb and Bds in close combat on an equal score, and by SCh, El, Cm, LH and LCm-HCh (mounted) Heavy Chariots",
   movement_notes = { 
     "Can pass through friendly Ps when moving"
@@ -120,7 +144,7 @@ base_tool_tips["HCh"] = {
   mounted = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 3, BG = 1 },
-  can_quick_kill="Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"Pk, Sp, Bd, Wb, Ax, Hd, Ps in Good Going, and SCh, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by="Lb, Cb and Bds in close combat on an equal score, and by SCh, El, Cm, LH and LCm",
   movement_notes = { 
     "Can pass through friendly Ps when moving"
@@ -137,7 +161,7 @@ base_tool_tips["Cm"] = {
   mounted = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 3, BG = 1 },
-  can_quick_kill="Ps in Good Going, and SCh, Kn, HCh, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"Ps in Good Going, and SCh, Kn, HCh, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by="Lb, Cb and Bds in close combat on an equal score, and by SCh in any going, or if in Bad Going",
   flees_from="Elephants",
   movement_notes = { 
@@ -156,7 +180,7 @@ base_tool_tips["Cv"] = {
   mounted = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill= "Ps in Good Going, and SCh, Bw, Mtd, Art, civilians in any going",
+  can_quick_kill={"Ps in Good Going, and SCh, Bw, Mtd, Art, civilians in any going"},
   flees_from="Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art.  SCh, or from any in Bad Going",
   movement_notes = { 
     "Can pass through friendly Ps when moving",
@@ -175,7 +199,7 @@ base_tool_tips["6Cv"] = {
   mounted = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill="Ps in Good Going, and SCh, Bw,Mtd, Art, civilians in any going", 
+  can_quick_kill={"Ps in Good Going, and SCh, Bw,Mtd, Art, civilians in any going"}, 
   flees_from="SCh, or from any in Bad Going.  Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art",
   movement_notes = { 
     "May deploy 2 BW from the table side-edges",
@@ -196,7 +220,6 @@ base_tool_tips["LCH"] = {
   mounted = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill="",
   quick_killed_by="Ps in Good Going, and SCh, Bw, Mtd, Art, civilians in any going",
   flees_from="SCh, or from any in Bad Going.  Flee if doubled by:  Pk, Sp and Hd in Good Going, and close combat Art",
   movement_notes = { 
@@ -215,7 +238,7 @@ base_tool_tips["LH"] = {
   mounted = true,
   combat = { foot = 2, mounted = 2 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill="SCh, El, Kn, HCh, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"SCh, El, Kn, HCh, Bw, Mtd, Art and civilians in any going"},
   flees_from= {
     "SCh, shooting Art, & Bad Going. ", 
     "Flee if doubled by:  Pk, Sp, Bd, Wb, Ax, Hd, WWg, civilians, and close combat Art",
@@ -242,7 +265,7 @@ base_tool_tips['LCm'] = {
   mounted = true,
   combat = { foot = 2, mounted = 2 },
   speed = { GG = 4, BG = 1 },
-  can_quick_kill="SCh, El, Kn, HCh, Bw, Mtd, Art and civilians in any going",
+  can_quick_kill={"SCh, El, Kn, HCh, Bw, Mtd, Art and civilians in any going"},
   quick_killed_by="",
   makes_flee="",
 flees_from="SCh, shooting Art, & Bad Going. Flee if doubled by:  Pk, Sp, Bd, Wb, Ax, Hd, WWg, civilians, and close combat Art. Fleeing is not halted by Bad Going",
@@ -268,7 +291,7 @@ base_tool_tips['4Pk'] = {
   solid = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 2, BG = 1 },
-  can_quick_kill="SCh, Art and civilians",
+  can_quick_kill={"SCh, Art and civilians"},
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
@@ -288,7 +311,7 @@ base_tool_tips['3Pk'] = {
   fast = true,
   combat = { foot = 3, mounted = 4 },
   speed = { GG = 3, BG = 3 },
-  can_quick_kill="SCh, Art and civilians and by Wb in any going",
+  can_quick_kill={"SCh, Art and civilians and by Wb in any going"},
   quick_killed_by="SCh, Kn and HCh in Good Going",
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
@@ -308,7 +331,7 @@ base_tool_tips['Sp'] = {
   solid = true,
   combat = { foot = 4, mounted = 4 },
   speed = { GG = 2, BG = 1 },
-  can_quick_kill="SCh, Art and civilians",
+  can_quick_kill={"SCh, Art and civilians"},
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
@@ -326,7 +349,7 @@ base_tool_tips['8Sp'] = {
   solid = true,
   combat = { foot = 4, mounted = 4 },
   speed = { GG = 2, BG = 1 },
-  can_quick_kill="SCh, Art and civilians",
+  can_quick_kill={"SCh, Art and civilians"},
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
@@ -348,7 +371,7 @@ base_tool_tips['4Bd'] = {
   solid = true,
   combat = { foot = 5, mounted = 3 },
   speed = { GG = 2, BG = 1 },
-  can_quick_kill="Kn, HCh & Cm on an equal score and SCh, Art and civilians",
+  can_quick_kill={"Kn, HCh & Cm on an equal score and SCh, Art and civilians"},
   quick_killed_by="SCh, Kn and HCh in Good Going, and by Wb in any going",
   makes_flee="",
   flees_from="",
@@ -374,7 +397,7 @@ base_tool_tips['3Bd'] = {
   fast = true,
   combat = { foot = 5, mounted = 3 },
   speed = { GG = 3, BG = 3 },
-  can_quick_kill="Kn, HCh & Cm on an equal score and SCh, Art and civilians",
+  can_quick_kill={"Kn, HCh & Cm on an equal score and SCh, Art and civilians"},
   quick_killed_by={
     "SCh, Kn and HCh in Good Going",
     "Wb in any going"
@@ -403,7 +426,7 @@ base_tool_tips['6Bd'] = {
   fast = true,
   combat = { foot = 5, mounted = 4, shot_at=4 },
   speed = { GG = 3, BG = 3 },
-  can_quick_kill="Kn, HCh & Cm on an equal score and SCh, Art and civilians",
+  can_quick_kill={"Kn, HCh & Cm on an equal score and SCh, Art and civilians"},
   quick_killed_by={
     "SCh, Kn and HCh in Good Going",
     "Wb"
@@ -433,7 +456,7 @@ base_tool_tips['4Wb'] = {
   solid = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 2, BG = 2 },
-  can_quick_kill="SCh, Pk, Sp, Bd, Hd, Art and civilians in any going",
+  can_quick_kill={"SCh, Pk, Sp, Bd, Hd, Art and civilians in any going"},
   quick_killed_by="SCh, Kn and HCh in Good Going (and avoid Elephants)",
   cannot_destory={
     "LH & LCm, who will flee in any but Bad Going",
@@ -454,8 +477,8 @@ base_tool_tips['3Wb'] = {
   fast = true,
   combat = { foot = 3, mounted = 2 },
   speed = { GG = 3, BG = 3 },
-  can_quick_kill="SCh, Pk, Sp, Bd, Hd, Art and civilians in any going",
-  quick_killed_by="SCh, Kn and HCh in Good Going (and avoid Elephants)",
+  can_quick_kill={"SCh, Pk, Sp, Bd, Hd, Art and civilians in any going"},
+  quick_killed_by={"SCh, Kn and HCh in Good Going (and avoid Elephants)"},
   cannot_destory={
     "LH & LCm, who will flee in any but Bad Going",
     "Ps flee instead"
@@ -475,7 +498,7 @@ base_tool_tips['4Ax'] = {
   solid = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 2, BG = 2 },
-  can_quick_kill="SCh, El, Art, and civilians",
+  can_quick_kill={"SCh, El, Art, and civilians"},
   quick_killed_by= {
     "Kn and HCh in Good Going",
     "avoid Pk or Sp in Good Going",
@@ -495,7 +518,7 @@ base_tool_tips['3Ax'] = {
   fast = true,
   combat = { foot = 3, mounted = 3 },
   speed = { GG = 3, BG = 3 },
-  can_quick_kill="SCh, El, Art, and civilians",
+  can_quick_kill={"SCh, El, Art, and civilians"},
   quick_killed_by= {
     "Kn and HCh in Good Going",
     "avoid Pk or Sp in Good Going",
@@ -519,7 +542,7 @@ base_tool_tips['7Hd'] = {
   solid = true,
   combat = { foot = 3, mounted = 2 },
   speed = { GG = 2, BG = 1 },
-  can_quick_kill="SCh, Art and civilians",
+  can_quick_kill={"SCh, Art and civilians"},
   quick_killed_by={
     "El, Kn and HCh in Good Going",
     "Wb"
@@ -548,15 +571,11 @@ base_tool_tips['5Hd'] = {
   fast = true,
   combat = { foot = 3, mounted = 2 },
   speed = { GG = 3, BG = 3 },
-  can_quick_kill="SCh, Art and civilians",
+  can_quick_kill={"SCh, Art and civilians"},
   quick_killed_by={
     "El, Kn and HCh in Good Going",
     "Wb"
   },
-  can_quick_kill="",
-  quick_killed_by="",
-  makes_flee="",
-  flees_from="",
   cannot_destory={
     "Cv & LCh, who will flee if in Good Going",
     "LH & LCm  who flee in any but Bad Going",
@@ -886,7 +905,7 @@ base_tool_tips['Lit']="Litters"
 base_tool_tips['Cwg']= shallow_copy(base_tool_tips['CP'])
 base_tool_tips['CWg']="Command Wagons"
 
-base_tool_tips['Civilians_Capmp_Followers_City_Denizens']= {
+base_tool_tips['Civilians_Camp_Followers_City_Denizens']= {
   name = "",
   fast = true,
   combat = { foot = 2, mounted = 0 },
@@ -914,19 +933,19 @@ base_tool_tips['Civilians_Capmp_Followers_City_Denizens']= {
 }
 
 base_tool_tips['Civilians']= 
-  shallow_copy(base_tool_tips['Civilians_Capmp_Followers_City_Denizens'])
+  shallow_copy(base_tool_tips['Civilians_Camp_Followers_City_Denizens'])
 assert(nil ~= base_tool_tips['Civilians'])
 table.insert(base_tool_tips['Civilians'].victory_notes,
   "Lost civilians do not count")
 
 base_tool_tips['Camp Followers']= 
-  shallow_copy(base_tool_tips['Civilians_Capmp_Followers_City_Denizens'])
+  shallow_copy(base_tool_tips['Civilians_Camp_Followers_City_Denizens'])
 assert(nil ~= base_tool_tips['Camp Followers'])
 table.insert(base_tool_tips['Camp Followers'].movement_notes,
   "Sallying: Camp Followers may leave their Camp but not return")
 
 base_tool_tips['City Denizens']= 
-  shallow_copy(base_tool_tips['Civilians_Capmp_Followers_City_Denizens'])
+  shallow_copy(base_tool_tips['Civilians_Camp_Followers_City_Denizens'])
 assert(nil ~=  base_tool_tips['City Denizens'])
 table.insert(base_tool_tips['City Denizens'].movement_notes,
   "Sallying: City Denizens only sally if there is no garrison, and both enemy and friends are within 2 BW of their City.")
