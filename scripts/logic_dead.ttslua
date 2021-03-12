@@ -54,7 +54,7 @@ function update_zone_value(zone)
         is_red = true
     end
 
-    local dead = calculate_dead_zone_value_dba(zone)
+    local dead = calculate_dead_zone_value(zone)
 
     local text_id = 'text_dead_'
     local image_id = 'dead_'
