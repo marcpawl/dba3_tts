@@ -1,0 +1,103 @@
+
+-- Return the number points that are in the dead zone for Triumph
+function calculate_dead_zone_value_triumph(zone)
+    local name = zone.getName()
+    local is_red = false
+    if str_has_substr(name, 'Army') then
+        return
+    end
+    if str_has_substr(name, 'red') then
+        is_red = true
+    end
+
+    local dead = 0
+    local has_double_element = false
+    for _,obj in ipairs(zone.getObjects()) do
+        local obj_name = obj.getName()
+        print_debug('Name is <' .. obj_name .. '>')
+        if str_has_substr(obj_name, 'base') then
+                dead = dead + 3
+
+            if str_has_substr(obj_name, 'Bow Levy')
+               or str_has_substr(obj_name, 'Horde')
+               or str_has_substr(obj_name, 'Rabble') then
+                dead = dead - 1
+            end
+
+            if str_has_substr(obj_name, 'Archers')
+               or str_has_substr(obj_name, 'Elite Foot')
+               or str_has_substr(obj_name, 'Pavisiers')
+               or str_has_substr(obj_name, 'Raiders')
+               or str_has_substr(obj_name, 'Spears')
+               or str_has_substr(obj_name, 'Cataphracts')
+               or str_has_substr(obj_name, 'Chariots') 
+               or str_has_substr(obj_name, 'Elephants')
+               or str_has_substr(obj_name, 'Elite Cavalry')
+               or str_has_substr(obj_name, 'HorseBow')
+               or str_has_substr(obj_name, 'Javelin Cavalry')
+               or str_has_substr(obj_name, 'Knights')then
+                dead = dead + 1
+            end
+
+            if str_has_substr(obj_name, 'Camp') then
+                dead = dead + 5
+            end
+
+            if str_has_substr(obj_name, 'Fortified') then
+                dead = dead - 7
+            end
+
+            if str_has_substr(obj_name, 'Herds') then
+                dead = dead - 2
+            end
+
+            if str_has_substr(obj_name, 'Mobile') then
+                dead = dead - 3.5
+            end
+
+            if str_has_substr(obj_name, 'Plaustrella')
+               or str_has_substr(obj_name, 'Shower Shooting') then
+                dead = dead -2
+            end
+
+            if str_has_substr(obj_name, 'Charging Camelry') then
+                dead = dead - 4
+            end
+
+            if str_has_substr(obj_name, 'Sword Fighting') then
+               dead = dead - 3.5
+            end
+
+        end
+        
+    end
+
+    -- The first double element counts as one additional death
+    if has_double_element then
+        dead = dead + 1
+    end
+    return dead
+ end
+
+
+-- Is the number of dead considered low
+function is_nb_dead_low_triumph(dead)
+    return (dead >= 1) and (dead <= 8)
+end
+
+-- Is the number of dead considered moderate
+function is_nb_dead_moderate_triumph(dead)
+    return (dead >= 9) and (dead <= 15)
+end
+
+-- Is the number of dead considered high
+function is_nb_dead_high_triumph(dead)
+    return (dead >= 16) and (dead <= 19)
+end
+
+-- Specializations for Triumph
+calculate_dead_zone_value = calculate_dead_zone_value_triumph
+is_nb_dead_low = is_nb_dead_low_triumph
+is_nb_dead_moderate = is_nb_dead_moderate_triumph
+is_nb_dead_high = is_nb_dead_high_triumph
+

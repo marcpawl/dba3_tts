@@ -50,82 +50,18 @@ end
 
 local g_updating_zone = {}
 
+
 function update_zone_value(zone)
     local name = zone.getName()
-    local is_red = false
-    if str_has_substr(name, 'Army') then
+     if not str_has_substr(name, 'dead') then
         return
     end
+
     if str_has_substr(name, 'red') then
         is_red = true
     end
 
-    local dead = 0
-    local has_double_element = false
-    for _,obj in ipairs(zone.getObjects()) do
-        local obj_name = obj.getName()
-        print_debug('Name is <' .. obj_name .. '>')
-        if str_has_substr(obj_name, 'base') then
-                dead = dead + 3
-
-            if str_has_substr(obj_name, 'Bow Levy')
-               or str_has_substr(obj_name, 'Horde')
-               or str_has_substr(obj_name, 'Rabble') then
-                dead = dead - 1
-            end
-
-            if str_has_substr(obj_name, 'Archers')
-               or str_has_substr(obj_name, 'Elite Foot')
-               or str_has_substr(obj_name, 'Pavisiers')
-               or str_has_substr(obj_name, 'Raiders')
-               or str_has_substr(obj_name, 'Spears')
-               or str_has_substr(obj_name, 'Cataphracts')
-               or str_has_substr(obj_name, 'Chariots') 
-               or str_has_substr(obj_name, 'Elephants')
-               or str_has_substr(obj_name, 'Elite Cavalry')
-               or str_has_substr(obj_name, 'HorseBow')
-               or str_has_substr(obj_name, 'Javelin Cavalry')
-               or str_has_substr(obj_name, 'Knights')then
-                dead = dead + 1
-            end
-
-            if str_has_substr(obj_name, 'Camp') then
-                dead = dead + 5
-            end
-
-            if str_has_substr(obj_name, 'Fortified') then
-                dead = dead - 7
-            end
-
-            if str_has_substr(obj_name, 'Herds') then
-                dead = dead - 2
-            end
-
-            if str_has_substr(obj_name, 'Mobile') then
-                dead = dead - 3.5
-            end
-
-            if str_has_substr(obj_name, 'Plaustrella')
-               or str_has_substr(obj_name, 'Shower Shooting') then
-                dead = dead -2
-            end
-
-            if str_has_substr(obj_name, 'Charging Camelry') then
-                dead = dead - 4
-            end
-
-            if str_has_substr(obj_name, 'Sword Fighting') then
-               dead = dead - 3.5
-            end
-
-        end
-        
-    end
-
-    -- The first double element counts as one additional death
-    if has_double_element then
-        dead = dead + 1
-    end
+    local dead = calculate_dead_zone_value_dba(zone)
 
     local text_id = 'text_dead_'
     local image_id = 'dead_'
@@ -146,11 +82,11 @@ function update_zone_value(zone)
     end, 1)
     if dead == 0 then
         UI.setAttribute(image_id, 'image', 'skeleton0' .. image_suffix)
-    elseif dead == 1 or dead == 2 or dead == 3 or dead == 4 or dead == 5 or dead == 6 or dead == 7 or dead == 8 then
+    elseif is_nb_dead_low(dead) then
         UI.setAttribute(image_id, 'image', 'skeleton1' .. image_suffix)
-    elseif dead == 9 or dead == 10 or dead == 11 or dead == 12 or dead == 13 or dead == 14 or dead == 15 then
+    elseif is_nb_dead_moderate(dead) then
         UI.setAttribute(image_id, 'image', 'skeleton2' .. image_suffix)
-    elseif dead == 16 or dead == 17 or dead == 18 or dead == 19 then
+    elseif is_nb_dead_high(dead) then
         UI.setAttribute(image_id, 'image', 'skeleton3' .. image_suffix)
     else
         UI.setAttribute(image_id, 'image', 'skeleton4' .. image_suffix)
