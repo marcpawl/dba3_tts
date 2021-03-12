@@ -8,6 +8,7 @@
 #include scripts/utilities_lua
 -- shallow_copy and deep_copy are needed by data_cheat_sheet
 #include scripts/data/data_cheat_sheet
+#include scripts/logic_dead_dba
 
 #include scripts/data/data_settings
 #include scripts/data/data_tables
