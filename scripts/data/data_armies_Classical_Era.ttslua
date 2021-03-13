@@ -1123,7 +1123,7 @@ armies["Classical"]["Celtiberians 240 to 20BC"] = {
         }
     },
     base2 = {
-        name = 'Raider_Gen',
+        name = 'Raiders_Gen',
         base = 'tile_grass_40x20',
         n_models = 4,
         fixed_models = {
@@ -2984,7 +2984,7 @@ armies["Classical"]["Early Carthaginian 550 to 275 BC (all options)"] = {
         model_data = 'troop_carthaginian_chariot_gen'
     },
     base2 = {
-        name = 'Heavy Foot_General',
+        name = 'Heavy Foot_Gen',
         base = 'tile_grass_40x15',
         n_models = 4,
         fixed_models = {
@@ -2995,7 +2995,7 @@ armies["Classical"]["Early Carthaginian 550 to 275 BC (all options)"] = {
         }
     },
     base3 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
@@ -3636,7 +3636,7 @@ armies["Classical"]["Hannibal in Italy 218 to 217 BC"] = {
     },
 
     base1 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
@@ -3813,7 +3813,7 @@ armies["Classical"]["Hannibal in Italy 216 to 203 BC"] = {
     },
 
     base1 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
@@ -4180,7 +4180,7 @@ armies["Classical"]["Later Carthaginian in Spain 275 to 236 BC"] = {
     },
 
     base1 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
@@ -4351,7 +4351,7 @@ armies["Classical"]["Later Carthaginian not in Spain or Italy 275 to 236 BC"] = 
     },
 
     base1 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
@@ -5983,7 +5983,7 @@ armies["Classical"]["Post-Zama Carthaginian 201 to 146 BC"] = {
     },
 
     base1 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
@@ -7822,7 +7822,7 @@ armies["Classical"]["Zama Campaign 202 BC"] = {
     },
 
     base1 = {
-        name = 'Javelin Cavalry_General',
+        name = 'Javelin Cavalry_Gen',
         base = 'tile_grass_40x30',
         n_models = 2,
         fixed_models = {
