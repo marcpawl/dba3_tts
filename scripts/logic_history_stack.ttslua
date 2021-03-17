@@ -1,121 +1,108 @@
 Stack = {}
 
+
 -- This is NOT a true stack, but more like a list that behaves with a browsable
 -- head. It imitates history stacks: you can go down but doesnt remember elements
 -- until you go up. However, if you add something, everything up of the current
 -- is removed.
 function Stack:Create()
-    local _stack = {}
-    _stack._current = nil
-    _stack._entries = {}
+    -- Fake node that is before the first recorded position
+    local tail = { after=nil, before=nil,
+      apply = function() 
+        print_important("Before first event")
+        return false
+      end
+    }
 
+    -- Fake node that is after the last recorded position.
+    -- Current should never point to head.
+    local head = { after=nil, before=nil,
+      apply = function() 
+        print_important("After last event")
+        return false
+      end
+    }
+    tail.before = tail
+    tail.after = head
+    head.after = head
+    head.before = tail
+
+    local _stack = {}
+    _stack._head = head
+  
+
+    -- Board as we know it. 
+    _stack._current = _stack._head.before
+
+
+    -- Is the current node at the last known event.
+    function _stack:is_at_top()
+      return (_stack._current == _stack._head.before)
+    end
+
+  
     -- Enters the value into the stack at the top.
     -- Returns nil
-    function _stack:push(...)
-        if ... then
-            self:pop_to_current()
-            local table_args = {...}
-            for _, val in ipairs(table_args) do
-                table.insert(self._entries, val)
-            end
-            self._current = #self._entries
-        end
+    function _stack:push(event)
+      if nil == event then
+        log_error("pushing nil")
+        return
+      end
+      local apply = event["apply"]
+      if nil == apply then
+        log_error("apply is nil")
+        return
+      end
+
+      self:_pop_to_current()
+
+      -- Make new node to be the top of stack.
+      local new_node = {
+        after = _stack._head,
+        before = _stack._head.before,
+                apply = function()
+                  event.apply()
+                end
+      } 
+      _stack._head.before.after = new_node
+      _stack._head.before = new_node
+      _stack._current = new_node
     end
 
-    -- like peek except at the current location
-    function _stack:current()
-        if self._current == nil or self._current < 1 then
-            return nil
-        end
-        return self._entries[self._current]
-    end
 
     -- Gets the current element and advances current lower into the stack, as if
     -- the element is removed (but it isn't). Cannot go lower than the bottom.
-    -- Returns that element if exists.
-    function _stack:pop()
-        if self._current == nil or self._current < 1 then
-            return
-        end
-        self._current = self._current - 1
-        return self._entries[self._current + 1]
+    function _stack:go_back()
+        self._current = self._current.before
+        self._current.apply()
     end
 
     -- Goes up in the stack, setting the current to the top of the current one,
     -- and returns it. The stack itself is not modified. Cannot go upper than
     -- the top.
-    -- Returns that element if it exists
-    function _stack:pop_reverse()
-        if self._current == nil or self._current == #self._entries then
-            return
-        end
-        self._current = self._current + 1
-        return self._entries[self._current]
+    function _stack:go_forward()
+        self._current = self._current.after
+        self._current.apply()
     end
 
 
-    -- Removes the last added element. This behaves like a proper stack pop
-    -- Returns that last value, if exists
-    function _stack:real_pop()
-        if #self._entries ~= 0 then
-            return table.remove(self._entries)
-        end
+    function _stack:_delete_node(node) 
+
+      node.before.after = node.after
+      node.after.before = node.before
+      -- nil the pointers so the node can be garbage collected
+      node.before = nil
+      node.after = nil
     end
 
-    -- Drops everything on top of the current head. Returns nothing.
-    function _stack:pop_to_current(n)
-        if self._current == nil then
-            return
-        end
-
-        while #self._entries > self._current do
-            self:real_pop()
-        end
+    -- Drops everything on top of the current.
+    function _stack:_pop_to_current()
+      local current = self._current
+      while self._current ~= self._head.before do
+        self:_delete_node(self._head.before)
+      end
     end
 
-    -- Gets the last element, if exists
-    function _stack:peek()
-        if #self._entries ~= 0 then
-            return self._entries[#self._entries]
-        end
-    end
-
-    -- Gets the current size of the stack
-    function _stack:size()
-        return #self._entries
-    end
-
-    -- Gets the element at position n, with 1 being the first inserted
-    -- and #size the last one
-    function _stack:get_at(n)
-        if n <= self:size() then
-            return self._entries[n]
-        end
-    end
-
-    -- Iterates through the values, from the last insert to the first
-    function _stack:iterator()
-        local count = self:size()
-        local index = count + 1
-        return function()
-            index = index - 1
-            if index > 0 then
-                return self:get_at(index)
-            end
-        end
-    end
-
-    -- Iterates through the values, from the first insert to the last
-    function _stack:iterator_inverse()
-        local index = 0
-        local count = self:size()
-        return function()
-            index = index + 1
-            if index <= count then
-                return self:get_at(index)
-            end
-        end
-    end
     return _stack
 end
 
@@ -126,58 +113,16 @@ function push_to_history_stack(event)
     g_history_stack:push(event)
     log('Pushed new event')
     log(event)
-    log('---')
-    print_debug('History stack size: ' .. g_history_stack:size())
 end
 
 
-
-function apply_move(move, forward)
-    apply_snapshot(move)
-end
 
 -- Applies the last move on the history stack, going back
 function go_back_history_stack()
-    local last_event = g_history_stack:pop()
-    if not last_event then
-        return print_important('Cannot go back because there are no saved moves')
-    end
-
-    if last_event.type == "snapshot" then
-        -- If you press undo right after a move, applying the last snapshot
-        -- has no effect.  To prevent the user from having to press undo
-        -- multiple times, if the change has no effect, we execute the
-        -- next previous history item.
-        local before = create_history_event_snapshot()
-        apply_snapshot(last_event, false)
-        local after = create_history_event_snapshot()
-        if is_history_snapshot_event_same(before,after) then
-          return go_back_history_stack()
-        end
-    else
-        print_error("History event type not understood: " .. tostring(last_event.type))
-    end
+    local node = g_history_stack:go_back()
 end
 
 -- Undoes the last move on the history stack, going forward
 function go_forward_history_stack()
-    local last_event = g_history_stack:pop_reverse()
-    if not last_event then
-        return print_important('Cannot go forward because there are no saved moves')
-    end
-
-    if last_event.type == "snapshot" then
-        -- If you press undo right after a move, applying the last snapshot
-        -- has no effect.  To prevent the user from having to press undo
-        -- multiple times, if the change has no effect, we execute the
-        -- next previous history item.
-        local before = create_history_event_snapshot()
-        apply_snapshot(last_event, false)
-        local after = create_history_event_snapshot()
-        if is_history_snapshot_event_same(before,after) then
-          return go_forward_history_stack()
-        end
-    else
-        print_error("History event type not understood: " .. tostring(last_event.type))
-    end
+  local node = g_history_stack:go_forward()
 end
