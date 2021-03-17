@@ -145,22 +145,46 @@ end
 
 -- Applies the last move on the history stack, going back
 function go_back_history_stack()
-    local last_move = g_history_stack:pop()
-    if not last_move then
+    local last_event = g_history_stack:pop()
+    if not last_event then
         return print_important('Cannot go back because there are no saved moves')
     end
 
-    print_debug('Going back in history... ')
-    apply_move(last_move, false)
+    if last_event.type == "snapshot" then
+        -- If you press undo right after a move, applying the last snapshot
+        -- has no effect.  To prevent the user from having to press undo
+        -- multiple times, if the change has no effect, we execute the
+        -- next previous history item.
+        local before = create_history_event_snapshot()
+        apply_snapshot(last_event, false)
+        local after = create_history_event_snapshot()
+        if is_history_snapshot_event_same(before,after) then
+          return go_back_history_stack()
+        end
+    else
+        print_error("History event type not understood: " .. tostring(last_event.type))
+    end
 end
 
 -- Undoes the last move on the history stack, going forward
 function go_forward_history_stack()
-    local last_move = g_history_stack:pop_reverse()
-    if not last_move then
+    local last_event = g_history_stack:pop_reverse()
+    if not last_event then
         return print_important('Cannot go forward because there are no saved moves')
     end
 
-    print_debug('Going forward in history... ')
-    apply_move(last_move, true)
+    if last_event.type == "snapshot" then
+        -- If you press undo right after a move, applying the last snapshot
+        -- has no effect.  To prevent the user from having to press undo
+        -- multiple times, if the change has no effect, we execute the
+        -- next previous history item.
+        local before = create_history_event_snapshot()
+        apply_snapshot(last_event, false)
+        local after = create_history_event_snapshot()
+        if is_history_snapshot_event_same(before,after) then
+          return go_forward_history_stack()
+        end
+    else
+        print_error("History event type not understood: " .. tostring(last_event.type))
+    end
 end
