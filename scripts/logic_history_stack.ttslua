@@ -34,6 +34,12 @@ function Stack:Create()
     -- Board as we know it. 
     _stack._current = _stack._head.before
 
+    -- number of events
+    _stack._size = 0
+
+    function _stack:size() 
+      return self._size
+    end
 
     -- Is the current node at the last known event.
     function _stack:is_at_top()
@@ -67,6 +73,8 @@ function Stack:Create()
       _stack._head.before.after = new_node
       _stack._head.before = new_node
       _stack._current = new_node
+
+      _stack._size = _stack._size + 1
     end
 
 
@@ -93,6 +101,8 @@ function Stack:Create()
       -- nil the pointers so the node can be garbage collected
       node.before = nil
       node.after = nil
+
+      self._size = self._size - 1
     end
 
     -- Drops everything on top of the current.

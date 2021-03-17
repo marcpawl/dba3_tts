@@ -251,6 +251,41 @@ function test_push_erases_all_above_current()
     lu.assertEquals(applied_event, 4)
 end
 
+function test_empty_stack_size_is_zero()
+  local sut = Stack.Create()
+  local actual = sut:size()
+  lu.assertEquals(0, actual)
+end
 
+function test_push_adds_to_size()
+    local event1 = {apply = function() applied_event = 1 end}
+    local sut = Stack.Create()
+    sut:push(event1)
+    local actual = sut:size()
+    lu.assertEquals(actual, 1)
+end
 
+function test_push_eraseing_decreases_size()
+    -- setup
+    local applied_event = nil
+    local sut = Stack.Create()
+    local event1 = {apply = function() applied_event = 1 end}
+    local event2 = {apply = function() applied_event = 2 end}
+    local event3 = {apply = function() applied_event = 3 end}
+    local event4 = {apply = function() applied_event = 4 end}
+    sut:push(event1)
+    sut:push(event2)
+    sut:push(event3)
+    sut:go_back()
+    lu.assertEquals(applied_event, 2)
+    sut:go_back()
+    lu.assertEquals(applied_event, 1)
+    -- Exercise
+    sut:push(event4)
+    local actual = sut:size()
+    -- Validate
+    lu.assertEquals(actual, 2)
+end
+
+  
 os.exit( lu.LuaUnit.run() )
