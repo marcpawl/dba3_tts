@@ -121,18 +121,11 @@ end
 
 g_history_stack = Stack:Create()
 
--- move is a table of the following type
--- {
---    "base_name_1" = {
---       "old" = old_transform_before_move,
---       "new" = new_transform_after_move
---    },
---    "base_name_2" = { ... }
--- }
-function push_to_history_stack(move)
-    g_history_stack:push(move)
-    log('Pushed new move')
-    log(move)
+
+function push_to_history_stack(event)
+    g_history_stack:push(event)
+    log('Pushed new event')
+    log(event)
     log('---')
     print_debug('History stack size: ' .. g_history_stack:size())
 end
