@@ -1733,6 +1733,7 @@ end
 function reset_state()
     g_selected_objects = {}
     g_picked_base_obj = nil
+    g_picked_base_objects = {}
     g_picked_base_initial_transform = nil
     g_last_zoc_value = nil
     g_current_wheel_group = nil
