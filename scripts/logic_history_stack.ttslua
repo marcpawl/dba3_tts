@@ -8,7 +8,7 @@ Stack = {}
 function Stack:Create()
     -- Fake node that is before the first recorded position
     local tail = { after=nil, before=nil,
-      apply = function() 
+      apply = function()
         print_important("Before first event")
         return false
       end
@@ -17,7 +17,7 @@ function Stack:Create()
     -- Fake node that is after the last recorded position.
     -- Current should never point to head.
     local head = { after=nil, before=nil,
-      apply = function() 
+      apply = function()
         print_important("After last event")
         return false
       end
@@ -30,20 +30,20 @@ function Stack:Create()
     local _stack = {}
 
     -- Maximum number of events to keep
-    _stack._capacity = 30
+    _stack._capacity = 60
 
     -- dummy nodes indicating one past the last known events.
     _stack._head = head
     _stack._tail = tail
-  
 
-    -- Board as we know it. 
+
+    -- Board as we know it.
     _stack._current = _stack._head.before
 
     -- number of events
     _stack._size = 0
 
-    function _stack:size() 
+    function _stack:size()
       return self._size
     end
 
@@ -52,9 +52,17 @@ function Stack:Create()
       return (_stack._current == _stack._head.before)
     end
 
-  
+
+    -- Return the most recent event that is known in the history.
+    -- nil if no events are known.
+    function _stack:top()
+      if _stack:size() == 0 then
+        return nil
+      end
+      return _stack._head.before
+    end
+
     -- Enters the value into the stack at the top.
-    -- Returns nil
     function _stack:push(event)
       if nil == event then
         log_error("pushing nil")
@@ -79,7 +87,7 @@ function Stack:Create()
                 apply = function()
                   event.apply()
                 end
-      } 
+      }
       _stack._head.before.after = new_node
       _stack._head.before = new_node
       _stack._current = new_node
@@ -104,7 +112,7 @@ function Stack:Create()
     end
 
 
-    function _stack:_delete_node(node) 
+    function _stack:_delete_node(node)
 
       node.before.after = node.after
       node.after.before = node.before
@@ -139,10 +147,12 @@ end
 
 -- Applies the last move on the history stack, going back
 function go_back_history_stack()
-    local node = g_history_stack:go_back()
+    print_info("Going back")
+    g_history_stack:go_back()
 end
 
 -- Undoes the last move on the history stack, going forward
 function go_forward_history_stack()
-  local node = g_history_stack:go_forward()
+  g_history_stack:go_forward()
+  print_info("Going forward")
 end

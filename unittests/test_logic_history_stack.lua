@@ -307,5 +307,26 @@ function test_pushing_past_capacity_erases_oldest_event()
     -- Validate
     lu.assertEquals(actual, 3)
 end
+
+function test_top_returns_null_for_empty_stack()
+    local sut = Stack.Create()
+    local actual = sut.top()
+    lu.assertEquals(actual, nil)
+end
+
+function test_top_returns_most_recent_event()
+    -- setup
+    local applied_event = nil
+    local sut = Stack.Create()
+    local event1 = {apply = function() applied_event = 1 end}
+    local event2 = {apply = function() applied_event = 2 end}
+    sut:push(event1)
+    sut:push(event2)
+    -- exercise
+    local top = sut:top()
+    -- validate
+    top.apply()
+    lu.assertEquals(applied_event, 2)
+end
   
 os.exit( lu.LuaUnit.run() )
