@@ -65,12 +65,12 @@ function Stack:Create()
     -- Enters the value into the stack at the top.
     function _stack:push(event)
       if nil == event then
-        log_error("pushing nil")
+        print_error("pushing nil")
         return
       end
       local apply = event["apply"]
       if nil == apply then
-        log_error("apply is nil")
+        print_error("apply is nil")
         return
       end
 
