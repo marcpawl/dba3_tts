@@ -147,12 +147,12 @@ end
 
 -- Applies the last move on the history stack, going back
 function go_back_history_stack()
-    print_info("Going back")
+    print_info("Going back in history")
     g_history_stack:go_back()
 end
 
 -- Undoes the last move on the history stack, going forward
 function go_forward_history_stack()
   g_history_stack:go_forward()
-  print_info("Going forward")
+  print_info("Going forward in history")
 end
