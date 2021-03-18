@@ -28,7 +28,13 @@ function Stack:Create()
     head.before = tail
 
     local _stack = {}
+
+    -- Maximum number of events to keep
+    _stack._capacity = 30
+
+    -- dummy nodes indicating one past the last known events.
     _stack._head = head
+    _stack._tail = tail
   
 
     -- Board as we know it. 
@@ -61,6 +67,10 @@ function Stack:Create()
       end
 
       self:_pop_to_current()
+
+      while _stack._size >= _stack._capacity do
+        _stack:_delete_node(_stack._tail.after)
+      end
 
       -- Make new node to be the top of stack.
       local new_node = {

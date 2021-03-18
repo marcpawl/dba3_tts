@@ -287,5 +287,25 @@ function test_push_eraseing_decreases_size()
     lu.assertEquals(actual, 2)
 end
 
+function test_pushing_past_capacity_erases_oldest_event()
+    -- setup
+    local applied_event = nil
+    local sut = Stack.Create()
+    sut._capacity = 3
+    local tail = sut._head.before
+    local event1 = {apply = function() applied_event = 1 end}
+    local event2 = {apply = function() applied_event = 2 end}
+    local event3 = {apply = function() applied_event = 3 end}
+    local event4 = {apply = function() applied_event = 4 end}
+    sut:push(event1)
+    sut:push(event2)
+    sut:push(event3)
+    lu.assertEquals(sut:size(), 3)
+    -- Exercise
+    sut:push(event4)
+    local actual = sut:size()
+    -- Validate
+    lu.assertEquals(actual, 3)
+end
   
 os.exit( lu.LuaUnit.run() )
