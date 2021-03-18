@@ -160,18 +160,17 @@ function push_back(obj)
     local destination = vec_add(initial_transform['position'], vec_mul_escalar(displacement_vector, magnitude))
     obj.setPosition(destination)
 
-    history_record_snapshot()
     local new_transform = calculate_transform(obj)
 
     local distance = max_distance_between_bases_front_corners(initial_transform['corners'], new_transform['corners'])
     print_info(obj.getName() .. ' has moved backwards its own depth, '
         .. string.format('%.2f', from_in_to_mu(distance)) .. ' MU')
+        
+    history_record_snapshot()
 end
 
 -- Like push back but in the other direction
 function push_forward(obj)
-    history_record_snapshot()
-
     local initial_transform = calculate_transform(obj)
     local angle = from_degrees_to_rad(obj.getRotation())['y']
     local displacement_vector = rad_to_vector(angle)
@@ -185,6 +184,8 @@ function push_forward(obj)
     local distance = max_distance_between_bases_front_corners(initial_transform['corners'], new_transform['corners'])
     print_info(obj.getName() .. ' has moved forward its own depth, '
         .. string.format('%.2f', from_in_to_mu(distance)) .. ' MU')
+
+    history_record_snapshot()
 end
 
 
@@ -1507,7 +1508,6 @@ function get_all_bases()
 end
 
 function onObjectDrop(player_color,  picked_up_object)
-    print("dropped ", picked_up_object.getGUID())
     g_picked_base_objects[picked_up_object] = nil
     if is_table_empty(g_picked_base_objects) then
       if is_base_obj(picked_up_object) then
