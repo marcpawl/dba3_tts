@@ -72,8 +72,8 @@ function align_two_bases(base2, position, corners, rotation)
     }
 end
 
-
-function is_base(obj)
+-- Is the base an object
+function is_base_obj(obj)
   local name = obj.getName()
   return  g_bases[name] ~= nil or str_starts_with(obj.getName(), 'base')
 end
@@ -84,7 +84,7 @@ function filter_bases(list)
     local filtered = {}
     for _,obj in ipairs(list) do
         local name = obj.getName()
-        if is_base(obj) then
+        if is_base_obj(obj) then
             table.insert(filtered, obj)
         end
     end

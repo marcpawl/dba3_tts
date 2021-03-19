@@ -182,7 +182,7 @@ function reorganize_dead_zone(dead_zone)
   local col  = 1
   local row = 1
   for _,obj in pairs(dead) do
-    if not is_base(obj) then
+    if not is_base_obj(obj) then
       print_important("Only bases should be in casualty area")
     else
       local base = obj
