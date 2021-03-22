@@ -593,9 +593,32 @@ function rotate_table()
     gametable.setRotation(newrotation)
 end
 
+-- Show the author so we are in compliance with CC-BY licence
+function show_model_copyright(model_data)
+  if not model_data['copyright_shown'] then
+    model_data['copyright_shown'] = true
+    local description = model_data['description']
+    if description == nil then
+      description= ""
+    end
+    local copyright = model_data['copyright']
+    if copyright == nil then
+      copyright = ""
+    end
+    local author = model_data['author']
+    if author == nil then
+      author = ""
+    end
+    local message = string.format("%s %s %s", description, copyright, author)
+    print_info(message)
+  end
+end
+
+
 function spawn_model(troop_name, pos, added_y_axis_rotation, collider, is_player_red, overridden_tex, overridden_mesh)
     -- Better pray that the input name actually exists! lol
     local model_data = _G[troop_name]
+    show_model_copyright(model_data)
 
     local texture = overridden_tex
     if texture == nil then
